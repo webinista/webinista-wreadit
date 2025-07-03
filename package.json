@@ -1,17 +1,17 @@
 {
   "name": "webinista-readit",
-  "version": "0.1.0",
-  "description": "Reads the things.",
-  "homepage": "https://github.com/webinista/webinista-readit#readme",
+  "version": "1.0.0-beta",
+  "description": "A WordPress plugin for creating audio versions of your posts using AWS Polly.",
+  "homepage": "https://github.com/webinista/webinista-wreadit#readme",
   "bugs": {
-    "url": "https://github.com/webinista/webinista-readit/issues"
+    "url": "https://github.com/webinista/webinista-wreadit/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webinista/webinista-readit.git"
+    "url": "git+https://github.com/webinista/webinista-wreadit.git"
   },
-  "license": "ISC",
-  "author": "",
+  "license": "GPL-3.0-or-later",
+  "author": "Webinista Inc.",
   "main": "./src/index.js",
   "scripts": {
     "start": "wp-scripts start",

@@ -23,7 +23,7 @@
  *
  * Webinista WreadIt: Adds a block and logic for creating audio files with Amazon Web Services' Polly service.
  * Copyright (C) 2025  Tiffany B. Brown, Webinista Inc.
-
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or

@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Constants for Standard and Neural voices
+ * Constants for Standard and Neural voices and methods for retrieving them.
  */
 final class LangVoices {
 	const ALL_OPTIONS = array(
