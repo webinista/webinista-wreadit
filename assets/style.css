@@ -1,0 +1,232 @@
+/*
+ * Webinista WreadIt
+ * style.js: CSS styling for the settings page.
+ *
+ * Note that this package includes libraries distributed with Apache 2.0 and MIT licenses.
+ *
+ * Copyright (C) 2025  Tiffany B. Brown, Webinista Inc.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+ :root {
+  --panel-bg: white;
+  --panel-border: hsl(240, 7%, 91.6%);
+  --margin-padding: 1.5em;
+  --panel-accent: #2271b1;
+}
+
+.settings_page_wreadit {
+
+  header {
+    padding: var(--margin-padding);
+    margin-block: var(--margin-padding);
+
+    > :not(h1) {
+      font-size: 1.2rem;
+    }
+  }
+
+  [id=webinista_logo] {
+    display: inline-block;
+    height: 4rem;
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5ch;
+    margin-block-start: 0
+  }
+
+  #wpfooter {
+    position: static;
+  }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+
+    &::after {
+      background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E') center;
+      content: '\00a0';
+      display: inline-block;
+      width: 1.2rem;
+      height: 1rem;
+      transform: rotate(-90deg);
+      transition: transform 250ms linear;
+    }
+
+    > h2 {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
+  details, header {
+    box-sizing: border-box;
+    background: var(--panel-bg );
+    border: 1px solid var(--panel-border);
+    padding: var(--margin-padding);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-block-end: var(--margin-padding);
+
+    &[open] {
+      summary::after {
+        transform: rotate(0deg);
+
+      }
+    }
+
+    > div:not([popover]) {
+      display: grid;
+      gap: 1em;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  details {
+    border-inline-start: 5px solid var(--panel-accent);
+  }
+
+  header {
+    border-block-start: 5px solid var(--panel-accent);
+    border-image: linear-gradient(to right, var(--panel-accent), #d63638) 30;
+  }
+
+  .notice {
+    margin-inline-start: 0;
+    margin-block: 2em;
+  }
+
+  [popover]:popover-open {
+    border: 0;
+    box-shadow: 0 0 2rem rgba(0,0,0,.25);
+    height: 40vh;
+    overflow-y: scroll;
+    padding: 1.5em;
+    width: 60vw;
+
+    &::backdrop {
+      background-color: rgba(0,0,0,.25);
+    }
+
+    > h3 {
+      margin-block-start: 0;
+    }
+  }
+
+  .intro {
+    font-size: 1.3em;
+
+    ul {
+      padding-inline-start: 2em;
+      list-style: square;
+    }
+
+    li + li {
+      margin-block: 1rem;
+    }
+  }
+
+  section[popover] {
+    position: relative;
+
+    .webinista_wreadit--close {
+      position: absolute;
+      inset-inline-end: 1.5em;
+      inline-size: 2.5em;
+      block-size: 2.5em;
+    }
+  }
+}
+
+[id=webinista_wreadit--options],
+.settings_page_wreadit :is( header.intro, .notice ) {
+  box-sizing: border-box;
+  max-width: 60rem;
+}
+
+[id=webinista_wreadit--options] {
+  p:not(.submit, .intro, .webinista_wreadit--posts) {
+    display: grid;
+    gap: 0.5em 1em;
+    grid-template: "a b c" "d e e";
+    grid-template-columns: 20em 0.8fr min-content;
+    grid-template-rows: auto auto;
+    align-items: center;
+    margin-block: 2em;
+
+    &:not(:has([popovertarget])) {
+      &::after {
+        display: inline-block;
+        content: '\00a0';
+        width: 2em;
+      }
+    }
+  }
+
+  section[popover] {
+    p {
+      display: block;
+      font-size: 1.1rem
+    }
+  }
+
+  label {
+    font-weight: 600;
+    grid-area: a;
+  }
+
+  input, select {
+    grid-area: b;
+    max-width: unset;
+  }
+
+  span {
+    grid-area: e;
+  }
+
+  [popovertarget] {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+  }
+}
+
+.webinista_wreadit--posts {
+  gap: 1em;
+  grid-template-areas: "a b";
+  grid-template-columns: min-content min-content;
+
+  label, input {
+    grid-area: unset;
+  }
+}
+
+:is( .webinista_wreadit--help, .webinista_wreadit--close ) {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+
+  svg {
+    pointer-events: none;
+    fill: currentColor;
+    stroke: white;
+    width: 100%;
+    height: 100%;
+    display: inherit;
+  }
+}

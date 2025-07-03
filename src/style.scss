@@ -1,0 +1,63 @@
+//
+// Webinista WreadIt
+// style.scss: Styles for the plugin block
+//
+// Note that this package includes libraries distributed with Apache 2.0 and MIT licenses.
+//
+// Copyright (C) 2025  Tiffany B. Brown, Webinista Inc.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+[id=webinista_WreaditIcon] {
+  width: 1.2rem;
+  height: auto;
+  display: inline-block;
+  margin-inline-start: 1ch;
+}
+
+.wreadit_audio_detached_modal_open {
+  .components-modal__header + div > p {
+    margin-block-start: 0;
+  }
+}
+
+
+.wreadit_confirm_delete {
+  h1 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+}
+
+.wreadit_panel .wreadit_buttonrack {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.8rem;
+  text-align: center;
+  margin-block-start: 0.8rem;
+}
+
+.wreadit_panel .components-button:is(.is-primary, .is-destructive) {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+
+.wreadit_panel--error {
+  a {
+    display: block;
+    margin-block: 10px;
+  }
+}
