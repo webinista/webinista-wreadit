@@ -1,6 +1,6 @@
 # [webinista-wreadit](https://wreadit.webinista.com/)
 
-**Current version:** v1.0.0-beta
+**Current version:** v1.0.0-beta [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
  
 A WordPress plugin for creating audio versions of your posts using AWS Polly.
 
@@ -33,6 +33,8 @@ In order to contribute, you'll need a local WordPress development environment. T
 3. Run `composer install`.
 4. Run `npm install`.
 5. Run `npm run start` to start a development server.
+
+Don't forget to activate the plugin from your WordPress dashboard.
 
 As of now, this project uses the [@wordpress/scripts](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) package. Consult its documentation for more instructions, or read the `package.json` file.
 
