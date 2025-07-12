@@ -34,22 +34,3 @@ Webinista Wreadit is licensed under the terms of the GNU General Public License,
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU General Public License for more details.
 
-## Contributing
-
-In order to contribute, you'll need a local WordPress development environment. Try  [**wp-env**](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) or [**Varying Vagrant Vagrants**](https://varyingvagrantvagrants.org/) (or VVV).
-
-### To contribute:
-
-1. Clone this repository into a local `wp-content/plugins` directory.
-2. Enter the `webinista-wreadit` directory.
-3. Run `composer install`.
-4. Run `npm install`.
-5. Run `npm run start` to start a development server.
-
-Don't forget to activate the plugin from your WordPress dashboard.
-
-As of now, this project uses the [@wordpress/scripts](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) package. Consult its documentation for more instructions, or read the `package.json` file.
-
-## Code of Conduct
-
-Webinista is working on the Code of Conduct and contribution instructions. For now, the rule is: be kind and / or helpful, ideally both.
