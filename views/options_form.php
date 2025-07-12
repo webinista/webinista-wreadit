@@ -31,7 +31,7 @@ require_once dirname(plugin_dir_path(__FILE__)) . '/classes/load.php';
 
 		<p class="intro"><?php esc_html_e(
 			'Enter your <abbr>AWS</abbr> Key ID, Secret Access Key, and <abbr>S3</abbr> bucket name below.',
-			Settings::ASSET_ID
+			'webinista-wreadit'
 		); ?></p>
 		<p>
 			<?php OptionsPage::readit_awskey(); ?>

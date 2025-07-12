@@ -1623,7 +1623,7 @@ final class LangVoices {
 						//phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralText
 						TextStrings::INVALID_ENGINE_ARGUMENT,
 						//phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralDomain
-						Settings::ASSET_ID
+						'webinista-wreadit'
 					)
 				);
 			}

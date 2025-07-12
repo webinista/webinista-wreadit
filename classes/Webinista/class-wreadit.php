@@ -183,7 +183,7 @@ final class WreadIt {
 	 */
 	public function sidebar_register(): void {
 		wp_register_script(
-			Settings::ASSET_ID,
+			'webinista-wreadit',
 			// Using dirname to get the parent directory of the current directory.
 			//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 			plugins_url( '/build/index.js', dirname( __DIR__ ) ),
@@ -390,7 +390,7 @@ final class WreadIt {
 	 */
 	public function enqueue_assets(): void {
 		wp_register_style(
-			Settings::ASSET_ID,
+			'webinista-wreadit',
 			// Using dirname to get the parent directory of the current directory.
 			//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 			plugins_url( '/build/style-index.css', dirname( __DIR__ ) ),
@@ -514,7 +514,7 @@ final class WreadIt {
 						'An <b>AWS Key ID</b>, <b>Secret Access Key</b>, and <b>S3 Bucket Name</b> are required. <a href="wp-admin/options-general.php?page=wreadit">WreadIt Settings</a>',
 						'b,a,div' // Allowed tags.
 					),
-					Settings::ASSET_ID
+					'webinista-wreadit'
 				)
 			);
 		} elseif ( $request->get_method() === \WP_REST_Server::CREATABLE ) {
@@ -542,7 +542,7 @@ final class WreadIt {
 			wp_die(
 				esc_html__(
 					'You do not have permission to perform that action.',
-					Settings::ASSET_ID
+					'webinista-wreadit'
 				),
 				null,
 				403
