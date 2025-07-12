@@ -48,8 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version 0.1.0
  */
 final class Settings {
-	const READIT_VERSION    = '0.1.0';
-	const ASSET_ID          = 'webinista-wreadit';
+	const READIT_VERSION    = '1.0.0-beta';
 	const AUDIO_TYPE        = 'mp3';
 	const OPTIONS_PAGE_NAME = 'wreadit';
 

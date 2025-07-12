@@ -40,10 +40,6 @@
 declare(strict_types=1);
 namespace Webinista;
 
-
-error_log( __NAMESPACE__ );
-
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }

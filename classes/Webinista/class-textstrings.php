@@ -43,7 +43,6 @@ final class TextStrings {
 	const AWS_KEY_LABEL            = '<abbr>AWS</abbr> Key ID';
 	const AWS_REGION               = '<abbr>AWS</abbr> Region';
 	const AWS_SECRET_LABEL         = 'Secret Access Key';
-	const AWS_SETTINGS_INTRO_TEXT  = 'Enter your <abbr>AWS</abbr> Key ID, Secret Access Key, and <abbr>S3</abbr> bucket name below.';
 	const POST_TYPES_INTRO_TEXT    = 'Select which post types can be converted to audio.';
 	const DOMAIN_LABEL             = 'Custom Host URL';
 	const DOMAIN_DESCRIBED_BY      = 'Include the https:// prefix. (Optional)';

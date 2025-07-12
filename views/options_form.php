@@ -29,7 +29,10 @@ require_once dirname(plugin_dir_path(__FILE__)) . '/classes/load.php';
 	<details open>
 		<summary><h2>Credentials and Bucket Settings</h2></summary>
 
-		<p class="intro"><?php _e( TextStrings::AWS_SETTINGS_INTRO_TEXT ); ?></p>
+		<p class="intro"><?php esc_html_e(
+			'Enter your <abbr>AWS</abbr> Key ID, Secret Access Key, and <abbr>S3</abbr> bucket name below.',
+			Settings::ASSET_ID
+		); ?></p>
 		<p>
 			<?php OptionsPage::readit_awskey(); ?>
 		</p>

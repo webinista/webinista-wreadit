@@ -1,4 +1,16 @@
-# [webinista-wreadit](https://wreadit.webinista.com/)
+=== Plugin Name ===
+Contributors: webinista
+Donate link: https://ko-fi.com/webinista
+Tags: text-to-speech
+Requires at least: 6.7
+Tested up to: 6.8
+Stable tag: 1.0.0-beta
+Requires PHP: 8.0
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+A text-to-speech plugin for WordPress that uses Amazon Polly.
+
+# [Webinista WreadIt](https://wreadit.webinista.com/)
 
 **Current version:** v1.0.0-beta [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
  

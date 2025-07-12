@@ -205,7 +205,7 @@ final class Helpers {
 		$the_post     = get_post( intval( $post_id ) );
 		$post_content = sprintf(
 			// translators: "%1$s" should be the post title and (%2$s) is the post slug.
-			__( 'Audio version of "%1$s" (%2$s)', Settings::ASSET_ID ), // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
+			__( 'Audio version of "%1$s" (%2$s)', 'webinista-wreadit'),
 			esc_textarea( get_post_field( 'post_title', $the_post ) ),
 			esc_textarea( get_post_field( 'post_name', $the_post ) )
 		);
