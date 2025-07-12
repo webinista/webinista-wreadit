@@ -10,6 +10,8 @@ License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 A text-to-speech plugin for WordPress that uses Amazon Polly.
 
+== Description ==
+
 Webinista WreadIt <https://wreadit.webinista.com>
 
 Current version: v1.0.0-beta [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
