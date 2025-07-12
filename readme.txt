@@ -1,14 +1,26 @@
-# [Webinista WreadIt](https://wreadit.webinista.com/)
+=== Plugin Name ===
+Contributors: webinista
+Donate link: https://ko-fi.com/webinista
+Tags: text-to-speech
+Requires at least: 6.7
+Tested up to: 6.8
+Stable tag: 1.0.0-beta.2
+Requires PHP: 8.0
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+A text-to-speech plugin for WordPress that uses Amazon Polly.
 
-**Current version:** v1.0.0-beta [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
+Webinista WreadIt <https://wreadit.webinista.com>
+
+Current version: v1.0.0-beta [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
 
 A WordPress plugin for creating audio versions of your posts using Amazon Polly.
 
-## Prerequisites
+Prerequisites
 
-This plugin assumes that you are familiar with [Amazon Web Services](https://aws.amazon.com/) and that you have an account.
+This plugin assumes that you are familiar with Amazon Web Services (https://aws.amazon.com/) and that you have an account.
 
-## License
+License
 
 Webinista Wreadit is licensed under the terms of the GNU General Public License, version 3. Some of its dependencies use the MIT 2.0 and Apache 2.0 licenses.
 
