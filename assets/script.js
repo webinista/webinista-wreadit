@@ -19,75 +19,75 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-"use strict";
+'use strict';
 
 class WebinistaWreadIt {
-  static is_valid_s3_bucket_name( bucket_name ) {
-    if (!bucket_name) {
-      return false;
-    }
+	static is_valid_s3_bucket_name( bucket_name ) {
+		if ( ! bucket_name ) {
+			return false;
+		}
 
-    const regex = new RegExp( /^(?!xn--|sthree-|amzn-s3-demo-|.*-s3alias$|.*--ol-s3$|.*--x-s3$)[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/ );
+		const regex = new RegExp(
+			/^(?!xn--|sthree-|amzn-s3-demo-|.*-s3alias$|.*--ol-s3$|.*--x-s3$)[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/
+		);
 
-    return regex.test(bucket_name);
-  }
+		return regex.test( bucket_name );
+	}
 
-  static is_valid_domain( domain_name ) {
-    if ( !domain_name ) {
-      return false;
-    }
+	static is_valid_domain( domain_name ) {
+		if ( ! domain_name ) {
+			return false;
+		}
 
-    const regex = new RegExp( /(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/ );
+		const regex = new RegExp(
+			/(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/
+		);
 
-    return regex.test( domain_name );
-  }
+		return regex.test( domain_name );
+	}
 
-  static disable_standard( regions_menu ) {
-    var opts = Array.from( regions_menu.querySelectorAll('option') );
-    opts.forEach((o) => {
-      if( o?.dataset?.engine === 'standard') {
-        o.disabled = true;
-      } else {
-        o.disabled = false;
-      }
+	static disable_standard( regions_menu ) {
+		var opts = Array.from( regions_menu.querySelectorAll( 'option' ) );
+		opts.forEach( ( o ) => {
+			if ( o?.dataset?.engine === 'standard' ) {
+				o.disabled = true;
+			} else {
+				o.disabled = false;
+			}
+		} );
+	}
 
-    });
-  }
-
-  static enable_standard( regions_menu ) {
-    var opts = Array.from( regions_menu.querySelectorAll('option') );
-    opts.forEach((o) => o.disabled = false);
-  }
+	static enable_standard( regions_menu ) {
+		var opts = Array.from( regions_menu.querySelectorAll( 'option' ) );
+		opts.forEach( ( o ) => ( o.disabled = false ) );
+	}
 }
 
-((w,d) => {
-  var f = d.querySelector('#webinista_wreadit--options');
-  var voices = d.getElementById('webinista_wreadit_options[_polly_engine]');
-  var regions = d.getElementById('webinista_wreadit_options[_awsregion]');
+( ( w, d ) => {
+	var f = d.querySelector( '#webinista_wreadit--options' );
+	var voices = d.getElementById( 'webinista_wreadit_options[_polly_engine]' );
+	var regions = d.getElementById( 'webinista_wreadit_options[_awsregion]' );
 
+	f.addEventListener( 'focusout', ( event ) => {
+		var { target } = event;
+		var { type, nodeName, value } = target;
 
-  f.addEventListener('focusout', (event) => {
-    var { target } = event;
-    var { type, nodeName, value } = target;
+		if ( nodeName === 'INPUT' && type === 'text' ) {
+			target.value = value.toString().trim();
+		}
+	} );
 
-    if( nodeName === 'INPUT' && type === 'text' ) {
-      target.value = value.toString().trim();
-    }
-  });
+	voices.addEventListener( 'change', ( event ) => {
+		if ( 'neural' == event.target.value ) {
+			WebinistaWreadit.disable_standard( regions );
+		} else {
+			WebinistaWreadit.enable_standard( regions );
+		}
+	} );
 
-  voices.addEventListener('change', (event) => {
-    if( 'neural' == event.target.value ) {
-      WebinistaWreadit.disable_standard( regions );
-    } else {
-      WebinistaWreadit.enable_standard( regions );
-    }
-  });
-
-  window.addEventListener('load', () => {
-    if( 'neural' == voices.value ) {
-      WebinistaWreadit.disable_standard( regions );
-    }
-  });
-
-})(window, document);
-
+	window.addEventListener( 'load', () => {
+		if ( 'neural' == voices.value ) {
+			WebinistaWreadit.disable_standard( regions );
+		}
+	} );
+} )( window, document );

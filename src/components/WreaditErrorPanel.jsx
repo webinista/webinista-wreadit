@@ -25,22 +25,18 @@ import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import WreadItIcon from './WreadItIcon';
 import { Icon } from '@wordpress/components';
 
-const WreaditErrorPanel = ({code, message}) => {
-  /* Message should be HTML returned from the API. */
-  return (
-    <PluginDocumentSettingPanel
-      className="wreadit_panel wreadit_panel--error"
-      name="webinista-readit"
-      title={ __( 'Create an audio version' ) }
-      icon={<Icon icon={WreadItIcon} />}
-    >
-      <div dangerouslySetInnerHTML={{ __html: message }}></div>
-
-   </PluginDocumentSettingPanel>
-  );
-}
+const WreaditErrorPanel = ( { code, message } ) => {
+	/* Message should be HTML returned from the API. */
+	return (
+		<PluginDocumentSettingPanel
+			className="wreadit_panel wreadit_panel--error"
+			name="webinista-readit"
+			title={ __( 'Create an audio version' ) }
+			icon={ <Icon icon={ WreadItIcon } /> }
+		>
+			<div dangerouslySetInnerHTML={ { __html: message } }></div>
+		</PluginDocumentSettingPanel>
+	);
+};
 
 export default WreaditErrorPanel;
-
-
-

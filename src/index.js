@@ -25,5 +25,5 @@ import WebinistaWreadItSidebar from './components/WebinistaWreadItSidebar';
 import './style.scss';
 
 registerPlugin( 'webinista-wreadit', {
-  render: WebinistaWreadItSidebar
+	render: WebinistaWreadItSidebar,
 } );
