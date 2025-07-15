@@ -5,14 +5,10 @@
 import {
   describe,
   expect,
-  test,
-  beforeEach
+  test
 } from '@jest/globals';
-import {screen} from '@testing-library/dom';
-import {
-  render,
-  getByText
-} from '@testing-library/react';
+
+import { render } from '@testing-library/react';
 import WreadItIcon from '../components/WreadItIcon';
 
 const attributes = [
