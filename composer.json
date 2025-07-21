@@ -1,6 +1,6 @@
 {
     "require": {
-        "aws/aws-sdk-php": "^3.343"
+        "aws/aws-sdk-php": "^3.351"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
