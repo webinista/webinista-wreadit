@@ -20,7 +20,7 @@ require_once dirname(plugin_dir_path(__FILE__)) . '/classes/load.php';
 			<li>an IAM user that has access to Polly and write access to an S3 bucket for audio storage.</li>
 		 </ul>
 
-		<p>Need help? Learn about <a href="https://wreadit.webinista.com/">support packages</a>.</p>
+		<p>Need help? Get <a href="https://wreadit.webinista.com/support">support</a>.</p>
 	</header>
 
 	<form action="options.php" method="post" id="webinista_wreadit--options">
@@ -30,7 +30,7 @@ require_once dirname(plugin_dir_path(__FILE__)) . '/classes/load.php';
 		<summary><h2>Credentials and Bucket Settings</h2></summary>
 
 		<p class="intro"><?php esc_html_e(
-			'Enter your <abbr>AWS</abbr> Key ID, Secret Access Key, and <abbr>S3</abbr> bucket name below.',
+			'Enter your AWS Key ID, Secret Access Key, and S3 bucket name below.',
 			'webinista-wreadit'
 		); ?></p>
 		<p>
