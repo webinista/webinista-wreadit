@@ -7,7 +7,7 @@
  * @category  Plugin
  * @package   WebinistaWreadIt
  * @author    Webinista, Inc <readit@webinista.com>
- * @copyright 2024 Webinista, Inc
+ * @copyright 2025 Webinista, Inc
  * @license   MIT License
  * @link      https://wreadit.webinista.com/
  * @since     File available since Release 1.0.0
@@ -79,15 +79,6 @@ final class WreadIt {
 	}
 
 	/**
-	 * Deletes the plugin settings when it is uninstalled (deactivated and deleted).
-	 *
-	 * @since 1.0
-	 */
-	public static function on_uninstall(): void {
-		delete_option( 'webinista_wreadit_options' );
-	}
-
-	/**
 	 * Adds a custom wreadit_revision post type.
 	 *
 	 * @since 1.0
@@ -97,7 +88,7 @@ final class WreadIt {
 			'public'              => false,
 			'exclude_from_search' => true,
 			//phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralDomain
-			'label'               => esc_html__( 'Manage Audio Versions', 'webinista-wreadit'), //phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralDomain
+			'label'               => esc_html__( 'Manage Audio Versions', 'webinista-wreadit' ), //phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralDomain
 			'menu_icon'           => 'none',
 			'show_in_nav_menus'   => false,
 			'capabilities'        => array(
@@ -221,14 +212,13 @@ final class WreadIt {
 	 */
 	public function validate_webinista_wreadit_options( array $input ) {
 
-
 		// Was an AWS Key ID submitted?
 		if ( empty( sanitize_text_field( $input['_awskey'] ) ) ) :
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awskey',
 				//phpcs:disabled WordPress.WP.I18n.NonSingularStringLiteralText
-				esc_html__( TextStrings::BLANK_AWS_KEY, 'webinista-wreadit')
+				esc_html__( TextStrings::BLANK_AWS_KEY, 'webinista-wreadit' )
 			);
 
 		endif;
@@ -239,7 +229,7 @@ final class WreadIt {
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awssecret',
 				//phpcs:disabled WordPress.WP.I18n.NonSingularStringLiteralText
-				esc_html__( TextStrings::BLANK_SECRET_KEY, 'webinista-wreadit')
+				esc_html__( TextStrings::BLANK_SECRET_KEY, 'webinista-wreadit' )
 			);
 
 		endif;
@@ -250,7 +240,7 @@ final class WreadIt {
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awss3bucket',
 				//phpcs:disabled WordPress.WP.I18n.NonSingularStringLiteralText
-				esc_html__( TextStrings::BAD_BUCKET_NAME, 'webinista-wreadit')
+				esc_html__( TextStrings::BAD_BUCKET_NAME, 'webinista-wreadit' )
 			);
 
 		endif;
@@ -260,7 +250,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awsregion',
-				esc_html__( TextStrings::UNKOWN_REGION, 'webinista-wreadit')
+				esc_html__( TextStrings::UNKOWN_REGION, 'webinista-wreadit' )
 			);
 
 		endif;
@@ -270,7 +260,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--domain',
-				esc_html__( TextStrings::INVALID_HOST, 'webinista-wreadit')
+				esc_html__( TextStrings::INVALID_HOST, 'webinista-wreadit' )
 			);
 
 		endif;
@@ -280,7 +270,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awsaudio',
-				esc_html__( 'Unsupported audio format.', 'webinista-wreadit')
+				esc_html__( 'Unsupported audio format.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -290,7 +280,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--voice',
-				esc_html__( 'Unsupported voice option.', 'webinista-wreadit')
+				esc_html__( 'Unsupported voice option.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -300,7 +290,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--engine',
-				esc_html__( 'Unsupported engine option.', 'webinista-wreadit')
+				esc_html__( 'Unsupported engine option.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -310,7 +300,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--post_types',
-				esc_html__( 'One or more of the post types selected does not exist.', 'webinista-wreadit')
+				esc_html__( 'One or more of the post types selected does not exist.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -370,13 +360,13 @@ final class WreadIt {
 			$new_actions['settings'] = sprintf(
 				'<a href="%1$s">%2$s</a>',
 				esc_url( add_query_arg( $args, menu_page_url( 'wreadit', false ) ) ),
-				esc_html__( 'Settings', 'webinista-wreadit')
+				esc_html__( 'Settings', 'webinista-wreadit' )
 			);
 
 			$new_actions['support'] = sprintf(
 				'<a href="%1$s" target="_blank">%2$s</a>',
 				esc_url( $plugin_data['PluginURI'] . 'support/' ),
-				esc_html__( 'Support', 'webinista-wreadit'),
+				esc_html__( 'Support', 'webinista-wreadit' ),
 			);
 		endif;
 
@@ -398,8 +388,8 @@ final class WreadIt {
 			Settings::READIT_VERSION
 		);
 
-		wp_enqueue_script( 'webinista-wreadit');
-		wp_enqueue_style( 'webinista-wreadit');
+		wp_enqueue_script( 'webinista-wreadit' );
+		wp_enqueue_style( 'webinista-wreadit' );
 	}
 
 	/**
@@ -412,7 +402,7 @@ final class WreadIt {
 
 		if ( is_admin() && Helpers::is_wreadit_settings_page() ) :
 			wp_register_script(
-				'webinista-wreadit'. '-admin',
+				'webinista-wreadit-admin',
 				// Using dirname to get the parent directory of the current directory.
 				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 				plugins_url( '/assets/script.js', dirname( __DIR__ ) ),
@@ -420,10 +410,10 @@ final class WreadIt {
 				Settings::READIT_VERSION,
 				array( 'in_footer' => true )
 			);
-			wp_enqueue_script( 'webinista-wreadit'. '-admin' );
+			wp_enqueue_script( 'webinista-wreadit-admin' );
 
 			wp_register_style(
-				'webinista-wreadit'. '-admin',
+				'webinista-wreadit-admin',
 				// Using dirname to get the parent directory of the current directory.
 				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 				plugins_url( '/assets/style.css', dirname( __DIR__ ) ),
@@ -431,7 +421,7 @@ final class WreadIt {
 				Settings::READIT_VERSION
 			);
 
-			wp_enqueue_style( 'webinista-wreadit'. '-admin' );
+			wp_enqueue_style( 'webinista-wreadit-admin' );
 
 			// Removes maintenance and update nag boxes.
 			remove_action( 'admin_notices', 'maintenance_nag', 10 );
@@ -455,13 +445,13 @@ final class WreadIt {
 		if ( ! ctype_digit( $post_id ) ) {
 			$response = new \WP_Error(
 				'400',
-				esc_html__( 'Bad Request', 'webinista-wreadit'),
+				esc_html__( 'Bad Request', 'webinista-wreadit' ),
 				array( 'status' => 400 )
 			);
 		} elseif ( get_post_type( $post_id ) === false ) {
 			$response = new \WP_Error(
 				'404',
-				esc_html__( 'Post not found.', 'webinista-wreadit'),
+				esc_html__( 'Post not found.', 'webinista-wreadit' ),
 				array( 'status' => 404 )
 			);
 		} else {
@@ -555,7 +545,7 @@ final class WreadIt {
 		)
 		) {
 			wp_die(
-				esc_html__( 'Your token is invalid.', 'webinista-wreadit'),
+				esc_html__( 'Your token is invalid.', 'webinista-wreadit' ),
 				null,
 				403
 			);
@@ -606,7 +596,7 @@ final class WreadIt {
 		if ( empty( $post_id ) ) :
 			$response = new \WP_Error(
 				'wreadit_empty_post_id',
-				esc_html_e( 'Missing a post ID.', 'webinista-wreadit')
+				esc_html_e( 'Missing a post ID.', 'webinista-wreadit' )
 			);
 
 			// If the post's type is not in the list of post types for audio return false.
@@ -738,7 +728,7 @@ final class WreadIt {
 		)
 		) {
 			wp_die(
-				esc_html__( 'Your token is invalid.', 'webinista-wreadit'),
+				esc_html__( 'Your token is invalid.', 'webinista-wreadit' ),
 				null,
 				403
 			);

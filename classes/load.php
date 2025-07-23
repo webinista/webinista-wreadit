@@ -7,7 +7,7 @@
  * @category  Plugin
  * @package   WebinistaWreadIt
  * @author    Webinista, Inc <readit@webinista.com>
- * @copyright 2024 Webinista, Inc
+ * @copyright 2025 Webinista, Inc
  * @license   MIT License
  * @link      https://wreadit.webinista.com/
  * @since     File available since Release 1.0.0
@@ -32,6 +32,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 declare(strict_types=1);
 namespace Webinista;
 
@@ -41,6 +42,7 @@ namespace Webinista;
 final class Utils {
 	/**
 	 * Builds the file path that will be included by the require directive.
+	 *
 	 * @param string $file The file name, without the extension.
 	 * @return Bar
 	 */

@@ -50,5 +50,4 @@ require __DIR__ . '/classes/load.php';
 if ( ! class_exists( 'WreadIt' ) ) :
 	$wreadit = new WreadIt();
 	register_activation_hook( __FILE__, array( $wreadit, 'on_activation' ) );
-	register_uninstall_hook( __FILE__, array( __NAMESPACE__, 'WreadIt', 'on_uninstall' ) );
 endif;

@@ -7,7 +7,7 @@
  * @category  Plugin
  * @package   WebinistaWreadIt
  * @author    Webinista, Inc <readit@webinista.com>
- * @copyright 2024 Webinista, Inc
+ * @copyright 2025 Webinista, Inc
  * @license   MIT License
  * @link      https://wreadit.webinista.com/
  * @since     File available since Release 1.0.0
@@ -205,7 +205,7 @@ final class Helpers {
 		$the_post     = get_post( intval( $post_id ) );
 		$post_content = sprintf(
 			// translators: "%1$s" should be the post title and (%2$s) is the post slug.
-			__( 'Audio version of "%1$s" (%2$s)', 'webinista-wreadit'),
+			__( 'Audio version of "%1$s" (%2$s)', 'webinista-wreadit' ),
 			esc_textarea( get_post_field( 'post_title', $the_post ) ),
 			esc_textarea( get_post_field( 'post_name', $the_post ) )
 		);

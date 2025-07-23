@@ -8,7 +8,7 @@
  * @category  Plugin
  * @package   WebinistaWreadIt
  * @author    Webinista, Inc <readit@webinista.com>
- * @copyright 2024 Webinista, Inc
+ * @copyright 2025 Webinista, Inc
  * @license   MIT License
  * @link      https://wreadit.webinista.com/
  * @since     File available since Release 1.0.0
