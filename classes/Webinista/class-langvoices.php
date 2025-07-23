@@ -11,7 +11,7 @@
  * @copyright 2024 Webinista, Inc
  * @license   MIT License
  * @link      https://wreadit.webinista.com/
- * @since     File available since Release 1.0.0-beta
+ * @since     File available since Release 1.0.0
  *
  * Note that this plugin includes libraries distributed with Apache 2.0 and MIT licenses.
  *

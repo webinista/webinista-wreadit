@@ -1,6 +1,6 @@
 # [Webinista WreadIt](https://wreadit.webinista.com/)
 
-**Current version:** v1.0.0-beta [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
+**Current version:** v1.0.0 [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
 
 A WordPress plugin for creating audio versions of your posts using Amazon Polly.
 

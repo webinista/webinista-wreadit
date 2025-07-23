@@ -10,7 +10,7 @@
  * @copyright 2024 Webinista, Inc
  * @license   MIT License
  * @link      https://wreadit.webinista.com/
- * @since     File available since Release 1.0.0-beta
+ * @since     File available since Release 1.0.0
  *
  * Note that this plugin includes libraries distributed with Apache 2.0 and MIT licenses.
  *
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version 0.1.0
  */
 final class Settings {
-	const READIT_VERSION    = '1.0.0-beta';
+	const READIT_VERSION    = '1.0.0';
 	const AUDIO_TYPE        = 'mp3';
 	const OPTIONS_PAGE_NAME = 'wreadit';
 
