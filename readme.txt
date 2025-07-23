@@ -1,4 +1,4 @@
-=== Plugin Name ===
+readme.txt=== Webinista WreadIt ===
 Contributors: webinista
 Donate link: https://ko-fi.com/webinista
 Tags: text-to-speech
