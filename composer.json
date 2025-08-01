@@ -1,10 +1,10 @@
 {
     "require": {
-        "aws/aws-sdk-php": "^3.351"
+        "aws/aws-sdk-php": "^3.352"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
-        "wp-coding-standards/wpcs": "^3.0"
+        "wp-coding-standards/wpcs": "^3.2"
     },
     "config": {
         "allow-plugins": {
