@@ -62,8 +62,7 @@ final class WreadIt {
 		add_action( 'admin_init', array( $this, 'enqueue_settings_assets' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'set_plugin_action_links' ), 10, 3 );
-		add_filter( 'wp_get_attachment_url', array( $this, 'rewrite_media_urls' ), 20, 1);
-
+		add_filter( 'wp_get_attachment_url', array( $this, 'rewrite_media_urls' ), 20, 1 );
 	}
 
 	/**
@@ -100,8 +99,6 @@ final class WreadIt {
 		);
 
 		register_post_type( 'wreadit_revision', $args_revisions );
-
-
 	}
 
 	/**
@@ -817,18 +814,25 @@ final class WreadIt {
 		return rest_ensure_response( $response );
 	}
 
+	/**
+	 * Rewrites URLs of WreadIt attachments in the media library.
+	 *
+	 * @since 1.1
+	 *
+	 * @param string $url A media library URL.
+	 * @return string Returns a URL string that removes the site URL and includes the S3 bucket name and prefix.
+	 */
 	public function rewrite_media_urls( string $url ): string {
 		$new_url = $url;
 
 		// If the incoming URL contains the aws bucket name setting ...
-		if( stristr( $url, Settings::get_option( '_awss3bucket' ) ) !== false ):
+		if ( stristr( $url, Settings::get_option( '_awss3bucket' ) ) !== false ) :
 			$upload_dir = wp_upload_dir();
 
-			if( array_key_exists( 'baseurl', $upload_dir) ):
-				$new_url = trim(str_ireplace( $upload_dir['baseurl'], '', $url ), '/');
+			if ( array_key_exists( 'baseurl', $upload_dir ) ) :
+				$new_url = trim( str_ireplace( $upload_dir['baseurl'], '', $url ), '/' );
 				$new_url = Helpers::rewrite_url_with_custom_domain( $new_url );
 			endif;
-
 
 		endif;
 
