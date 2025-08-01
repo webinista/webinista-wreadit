@@ -420,10 +420,10 @@ final class Helpers {
 	 * @param int|string $audio_id The post ID for the audio attachment.
 	 * @return string
 	 */
-	public static function rewrite_url_with_custom_domain( string $guid, int|string $audio_id ): string {
+	public static function rewrite_url_with_custom_domain( string $guid, int|string|bool $audio_id = false ): string {
 		$url = '';
 
-		if ( 'attachment' !== get_post_type( $audio_id ) ) {
+		if ( $audio_id && 'attachment' !== get_post_type( $audio_id ) ) {
 			return '';
 		}
 
