@@ -1,7 +1,7 @@
 /**
  * Webinista WreadIt
  *
- * WreaditErrorPanel.jsx: Loads if the plugin's settings are empty / unset.
+ * WreadItErrorPanel.jsx: Loads if the plugin's settings are empty / unset.
  *
  * Note that this package includes libraries distributed with Apache 2.0 and MIT licenses.
  *
@@ -25,7 +25,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import WreadItIcon from './WreadItIcon';
 import { Icon } from '@wordpress/components';
 
-const WreaditErrorPanel = ( { code, message } ) => {
+const WreadItErrorPanel = ( { code, message } ) => {
 	/* Message should be HTML returned from the API. */
 	return (
 		<PluginDocumentSettingPanel
@@ -39,4 +39,4 @@ const WreaditErrorPanel = ( { code, message } ) => {
 	);
 };
 
-export default WreaditErrorPanel;
+export default WreadItErrorPanel;

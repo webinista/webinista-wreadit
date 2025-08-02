@@ -10,7 +10,7 @@ This plugin assumes that you are familiar with [Amazon Web Services](https://aws
 
 ## License
 
-Webinista Wreadit is licensed under the terms of the GNU General Public License, version 3. Some of its dependencies use the MIT 2.0 and Apache 2.0 licenses.
+Webinista WreadIt is licensed under the terms of the GNU General Public License, version 3. Some of its dependencies use the MIT 2.0 and Apache 2.0 licenses.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

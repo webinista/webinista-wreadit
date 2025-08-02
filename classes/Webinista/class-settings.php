@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Settings and constants used throughout the plugin.
  * Also see: class-settingsselect-menus.php and class-regions.php
  *
- * @package Webinista_Wreadit
+ * @package Webinista_WreadIt
  * @version 0.1.0
  */
 final class Settings {

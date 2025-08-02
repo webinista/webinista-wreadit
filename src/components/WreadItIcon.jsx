@@ -25,7 +25,7 @@ const WreadItIcon = ( { fill = '#000' } ) => {
 		<svg
 			viewBox="0 0 660 600"
 			version="1.1"
-			id="webinista_WreaditIcon"
+			id="webinista_WreadItIcon"
 			aria-hidden="true"
 			data-testid="wreadit_icon"
 		>

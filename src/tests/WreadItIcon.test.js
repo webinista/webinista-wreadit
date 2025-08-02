@@ -22,7 +22,7 @@ describe('WreadItIcon is rendered', () => {
     const icon = render( <WreadItIcon {...attributes[0] }/> );
 
     expect(icon.getByTestId('wreadit_icon').getAttribute('id'))
-    .toBe('webinista_WreaditIcon');
+    .toBe('webinista_WreadItIcon');
 
   });
 });

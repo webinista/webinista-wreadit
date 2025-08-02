@@ -31,7 +31,7 @@ import { useCopyToClipboard } from '@uidotdev/usehooks';
 
 import WreadItIcon from './WreadItIcon';
 import MakeAudioPanel from './MakeAudioPanel';
-import WreaditErrorPanel from './WreaditErrorPanel';
+import WreadItErrorPanel from './WreadItErrorPanel';
 
 const WebinistaWreadItSidebar = () => {
 	const [ apiError, setApiError ] = useState( false );
@@ -182,7 +182,7 @@ const WebinistaWreadItSidebar = () => {
 	};
 
 	if ( apiError ) {
-		return <WreaditErrorPanel { ...apiError } />;
+		return <WreadItErrorPanel { ...apiError } />;
 	} else {
 		return (
 			<MakeAudioPanel

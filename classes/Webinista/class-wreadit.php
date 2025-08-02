@@ -762,8 +762,8 @@ final class WreadIt {
 					'post_modified_gmt' => $created_date,
 					'post_content'      => Helpers::build_post_content( $post_id ),
 				),
-				//phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 				false,
+				//phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 				$post_id,
 				true,
 			);

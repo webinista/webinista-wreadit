@@ -79,15 +79,15 @@ class WebinistaWreadIt {
 
 	voices.addEventListener( 'change', ( event ) => {
 		if ( 'neural' == event.target.value ) {
-			WebinistaWreadit.disable_standard( regions );
+			WebinistaWreadIt.disable_standard( regions );
 		} else {
-			WebinistaWreadit.enable_standard( regions );
+			WebinistaWreadIt.enable_standard( regions );
 		}
 	} );
 
 	window.addEventListener( 'load', () => {
 		if ( 'neural' == voices.value ) {
-			WebinistaWreadit.disable_standard( regions );
+			WebinistaWreadIt.disable_standard( regions );
 		}
 	} );
 } )( window, document );
