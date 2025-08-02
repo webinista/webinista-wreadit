@@ -3,7 +3,7 @@ Contributors: webinista
 Donate link: https://ko-fi.com/webinista
 Tags: text-to-speech
 Requires at least: 6.7
-Tested up to: 6.8.2
+Tested up to: 6.8
 Stable tag: 1.1.0
 Requires PHP: 8.0
 License: GPLv3 or later
