@@ -42,22 +42,26 @@ require_once dirname(plugin_dir_path(__FILE__)) . '/classes/load.php';
 		</p>
 
 		<p>
-			<?php
-				OptionsPage::readit_bucket_name();
-				OptionsPage::readit_help_trigger(
-					'webinista_wreadit--bucket_help',
-					'Get help with the S3 Bucket Name field'
-				);
-			?>
+			<?php OptionsPage::readit_bucket_name(); ?>
+
+			<button
+				popovertarget="webinista_wreadit--bucket_help"
+				type="button"
+				title="<?php esc_html_e('Get help with the S3 Bucket Name field', 'webinista-wreadit'); ?>"
+				class="webinista_wreadit--help">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help-icon lucide-circle-help"><circle stroke-width="0" cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+			</button>
 		</p>
+
 		<section popover id="webinista_wreadit--bucket_help">
-			<?php
-				OptionsPage::readit_help_trigger(
-					'webinista_wreadit--bucket_help',
-					'',
-					'close'
-				);
-			?>
+			<button
+				popovertarget="webinista_wreadit--bucket_help"
+				type="button"
+				title="<?php esc_html_e('Close this modal', 'webinista-wreadit'); ?>"
+				class="webinista_wreadit--close">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><title>Close this panel</title><circle stroke-width="0" cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+			</button>
+
 			<h3>S3 Bucket Name</h3>
 			<p>
 				Dots or period characters are strongly discouraged in Simple Storage

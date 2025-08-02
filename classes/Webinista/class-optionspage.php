@@ -155,7 +155,7 @@ final class OptionsPage {
              <span id="webinista_wreadit_options_path_prefix_described">%3$s</span>',
 			esc_html__( 'Path Prefix', 'webinista-wreadit' ),
 			esc_attr( $_path_prefix ),
-			esc_html__( 'Prefix audio file names with a directory (Optional). Note that changing this setting later could break existing URLs.' )
+			esc_html__( 'Prefix audio file names with a directory (Optional). Note that changing this setting later could break existing URLs.', 'webinista-wreadit' )
 		);
 	}
 
@@ -194,13 +194,13 @@ final class OptionsPage {
 	 * @param string $label The option label.
 	 * @param string $value The option value.
 	 *
-	 * @return string
+	 * @return void
 	 */
-	protected static function make_engine_options( string $label, string $value ): string {
+	protected static function make_engine_options( string $label, string $value ): void {
 		$options                            = get_option( 'webinista_wreadit_options', Settings::DEFAULT_OPTIONS );
 		['_polly_engine' => $_polly_engine] = $options;
 
-		return sprintf(
+		printf(
 			'<option value="%1$s" %2$s>%3$s</option>',
 			esc_attr( $value ),
 			selected( $_polly_engine, $value, false ),
@@ -214,34 +214,33 @@ final class OptionsPage {
 	 * @return void
 	 */
 	public static function readit_pollyengine(): void {
-		$opts = array_map(
-			array( __CLASS__, 'make_engine_options' ),
-			SettingsSelectMenus::AWS_POLLY_ENGINES,
-			array_keys( SettingsSelectMenus::AWS_POLLY_ENGINES )
-		);
-		$opts = join( "\n", $opts );
+		$engines = SettingsSelectMenus::AWS_POLLY_ENGINES;
 
 		printf(
 			'<label for="webinista_wreadit_options[_polly_engine]">%s</label>
 			<select
                 id="webinista_wreadit_options[_polly_engine]"
                 name="webinista_wreadit_options[_polly_engine]"
-            >
-            %s
-            </select>',
-			esc_html__( 'Voice Engine', 'webinista-readit' ),
-			$opts
+            >',
+			esc_html__( 'Voice Engine', 'webinista-wreadit' )
 		);
-	}
 
+		array_walk(
+			$engines,
+			array( __CLASS__, 'make_engine_options' ),
+			array_keys( $engines )
+		);
+
+		print '</select>';
+	}
 	/**
-	 * Callback for array_map in make_voice_options
+	 * Callback for array_map in readit_pollyvoices
 	 *
 	 * @param array  $option Language group to create an optgroup for.
 	 * @param string $key Language group name.
-	 * @return string
+	 * @return void
 	 */
-	protected static function make_voice_optgroups( array $option, string $key ): string {
+	protected static function make_voice_optgroups( array $option, string $key ): void {
 		// Ensure that the voices are sorted in ascending alphabetical order.
 		usort(
 			$option['voices'],
@@ -250,37 +249,28 @@ final class OptionsPage {
 			}
 		);
 
-		$voices = array_map(
-			array( __CLASS__, 'make_voice_options' ),
-			$option['voices']
+		printf( '<optgroup label="%s">', esc_attr( $key ) );
+		array_walk(
+			$option['voices'],
+			array( __CLASS__, 'make_voice_options' )
 		);
-
-		$voices = join( PHP_EOL, $voices );
-
-		return sprintf(
-			'<optgroup label="%s">%s</optgroup>',
-			esc_attr( $key ),
-			$voices
-		);
+		print '</optgroup>';
 	}
 
 	/**
 	 * Callback for array_map in make_voice_optgroups
 	 *
 	 * @param array $option Array of voices from the language group.
-	 * @return string
+	 * @return void
 	 */
-	protected static function make_voice_options( array $option ): string {
+	protected static function make_voice_options( array $option ): void {
 		$settings             = get_option( 'webinista_wreadit_options', Settings::DEFAULT_OPTIONS );
 		['_voice' => $_voice] = $settings;
 
-		$engines = join( ':', $option['engines'] );
-
-		return sprintf(
-			'<option value="%2$s" data-engine="%3$s" %4$s>%1$s</option>',
+		printf(
+			'<option value="%2$s" %3$s>%1$s</option>',
 			esc_html( $option['label'] ),
 			esc_attr( $option['name'] ),
-			esc_attr( $engines ),
 			selected( $_voice, $option['name'], false ),
 		);
 	}
@@ -289,14 +279,14 @@ final class OptionsPage {
 	 * Callback for array_merge in readit_regions
 	 *
 	 * @param array $item An array with label, name keys.
-	 * @return string
+	 * @return void
 	 */
-	protected static function make_regions_options( array $item ): string {
+	protected static function make_regions_options( array $item ): void {
 
 		$options                      = get_option( 'webinista_wreadit_options', Settings::DEFAULT_OPTIONS );
 		['_awsregion' => $_awsregion] = $options;
 
-		return sprintf(
+		printf(
 			'<option value="%1$s" %2$s data-engine="%4$s">%3$s</option>',
 			esc_attr( $item['name'] ),
 			selected( $_awsregion, $item['name'], false ),
@@ -313,26 +303,18 @@ final class OptionsPage {
 		$regions_class = new Regions();
 		$regions       = get_class_vars( get_class( $regions_class ) );
 
-		$opts = array_map(
-			array( __CLASS__, 'make_regions_options' ),
-			$regions
-		);
-
-		$opts = join( "\n", $opts );
-
 		printf(
-			'<label for="webinista_wreadit_options[_awsregion]">%1$s</label>
+			'<label for="webinista_wreadit_options[_awsregion]">%s</label>
 			<select
                 id="webinista_wreadit_options[_awsregion]"
                 name="webinista_wreadit_options[_awsregion]"
                 aria-describedby="webinista_wreadit_options_region_desc"
-            >
-            %2$s
-            </select>
-            <span id="webinista_wreadit_options_region_desc" hidden></span>',
-			esc_html__( 'AWS Region', 'webinista-wreadit' ),
-			$opts
+            >',
+			esc_html__( 'AWS Region', 'webinista-wreadit' )
 		);
+
+		array_walk( $regions, array( __CLASS__, 'make_regions_options' ) );
+		print '</select>';
 	}
 
 	/**
@@ -345,25 +327,22 @@ final class OptionsPage {
 		$voices = LangVoices::get_voices_for_engines( array( 'neural', 'standard' ) );
 		ksort( $voices, SORT_STRING );
 
-		$opts = array_map(
-			array( __CLASS__, 'make_voice_optgroups' ),
-			$voices,
-			array_keys( $voices )
-		);
-
-		$opts = join( PHP_EOL, $opts );
-
 		printf(
 			'<label for="webinista_wreadit_options[_voice]">%s</label>
 			<select
                 id="webinista_wreadit_options[_voice]"
                 name="webinista_wreadit_options[_voice]"
-            >
-            %s
-            </select>',
+            >',
 			esc_html__( 'Voice', 'webinista-wreadit' ),
-			$opts
 		);
+
+		array_walk(
+			$voices,
+			array( __CLASS__, 'make_voice_optgroups' ),
+			array_keys( $voices )
+		);
+
+		print '</select>';
 	}
 
 	/**
@@ -458,7 +437,7 @@ final class OptionsPage {
 
 			$disabled = ( 'post' === $key ) ? ' disabled ' : '';
 
-			$output .= sprintf(
+			printf(
 				'<p class="webinista_wreadit--posts">
 					<input
 						type="checkbox"
@@ -470,15 +449,13 @@ final class OptionsPage {
 					>
 					<label for="%1$s">%2$s</label>
 				</p>',
-				$name,
-				ucfirst( $key ),
-				$is_checked,
-				$disabled
+				esc_attr( $name ),
+				esc_html( ucfirst( $key ) ),
+				esc_attr( $is_checked ),
+				esc_attr( $disabled )
 			);
 
 		endforeach;
-
-		print $output;
 	}
 
 	/**
@@ -487,13 +464,13 @@ final class OptionsPage {
 	 * @param string $label String to use for the option label.
 	 * @param string $value String to use for the option value.
 	 *
-	 * @return string
+	 * @return void
 	 */
-	protected static function make_format_options( string $label, string $value ): string {
+	protected static function make_format_options( string $label, string $value ): void {
 		$options                = get_option( 'webinista_wreadit_options', Settings::DEFAULT_OPTIONS );
 		['_format' => $_format] = $options;
 
-		return sprintf(
+		printf(
 			'<option value="%1$s" %2$s>%3$s</option>',
 			esc_attr( $value ),
 			selected( $_format, $value, false ),
@@ -507,57 +484,23 @@ final class OptionsPage {
 	 * @return void
 	 */
 	public static function readit_audio_format(): void {
-		$opts = array_map(
-			array( __CLASS__, 'make_format_options' ),
-			SettingsSelectMenus::AWS_POLLY_AUDIO,
-			array_keys( SettingsSelectMenus::AWS_POLLY_AUDIO )
-		);
-
-		$opts = join( "\n", $opts );
-
 		printf(
 			'<label for="webinista_wreadit_options[_format]">%s</label>
 			<select
                 id="webinista_wreadit_options[_format]"
                 name="webinista_wreadit_options[_format]"
-            >
-            %s
-            </select>',
-			esc_html__( 'Audio Format', 'webinista-wreadit' ),
-			$opts
+            >',
+			esc_html__( 'Audio Format', 'webinista-wreadit' )
 		);
-	}
 
-	/**
-	 * Creates button with icons.
-	 *
-	 * @param string $target_name The html ID to use as the popovertarget attribute.
-	 * @param string $title_text The string to use for the button's title attribute.
-	 * @param string $mode The mode to use for the button. Should be 'help' or 'close'.
-	 * @return void
-	 */
-	public static function readit_help_trigger( string $target_name, string $title_text, string $mode = 'help' ): void {
-		$icon  = '';
-		$class = '';
+		$formats = SettingsSelectMenus::AWS_POLLY_AUDIO;
 
-		switch ( $mode ) {
-			case 'close':
-				$icon  = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><title>Close this panel</title><circle stroke-width="0" cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>';
-				$class = 'webinista_wreadit--close';
-				break;
-			default:
-				$icon  = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help-icon lucide-circle-help"><circle stroke-width="0" cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>';
-				$class = 'webinista_wreadit--help';
-		}
-
-		printf(
-			'<button popovertarget="%1$s" type="button" title="%2$s" class="%3$s">
-				%4$s
-			</button>',
-			esc_attr( $target_name ),
-			esc_attr( $title_text ),
-			esc_attr( $class ),
-			$icon
+		array_walk(
+			$formats,
+			array( __CLASS__, 'make_format_options' ),
+			array_keys( $formats )
 		);
+
+		print '</select>';
 	}
 }
