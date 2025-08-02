@@ -1620,9 +1620,7 @@ final class LangVoices {
 			if ( ! SettingsSelectMenus::is_supported_engine( $e ) ) {
 				throw new \InvalidArgumentException(
 					esc_html_e(
-						//phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralText
-						TextStrings::INVALID_ENGINE_ARGUMENT,
-						//phpcs:disable WordPress.WP.I18n.NonSingularStringLiteralDomain
+						'That engine is not supported.',
 						'webinista-wreadit'
 					)
 				);

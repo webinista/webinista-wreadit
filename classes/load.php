@@ -61,6 +61,5 @@ require Utils::file_name( 'settings' );
 require Utils::file_name( 'wreadit' );
 require Utils::file_name( 'regions' );
 require Utils::file_name( 'optionspage' );
-require Utils::file_name( 'textstrings' );
 require Utils::file_name( 'settingsselectmenus' );
 require Utils::file_name( 'langvoices' );

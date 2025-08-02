@@ -78,8 +78,7 @@ final class OptionsPage {
                 value="%2$s"
 				required
             >',
-            // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-			TextStrings::AWS_KEY_LABEL,
+			esc_html__( 'AWS Key ID', 'webinista-wreadit' ),
 			esc_attr( $_awskey ),
 		);
 	}
@@ -103,8 +102,7 @@ final class OptionsPage {
                 value="%2$s"
 				required
             >',
-           	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-			TextStrings::AWS_SECRET_LABEL,
+			esc_html__( 'Secret Access Key', 'webinista-wreadit' ),
 			esc_attr( $_awssecret ),
 		);
 	}
@@ -128,7 +126,7 @@ final class OptionsPage {
                 value="%2$s"
                 required
             >',
-			TextStrings::AWS_BUCKET_LABEL,
+			esc_html__( 'Bucket Name', 'webinista-wreadit' ),
 			esc_attr( $_s3bucket ),
 		);
 	}
@@ -155,10 +153,9 @@ final class OptionsPage {
                 aria-describedby="webinista_wreadit_options_path_prefix_described"
              >
              <span id="webinista_wreadit_options_path_prefix_described">%3$s</span>',
-			TextStrings::PATH_PREFIX,
+			esc_html__( 'Path Prefix', 'webinista-wreadit' ),
 			esc_attr( $_path_prefix ),
-			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-			TextStrings::PATH_PREFIX_DESCRIBED_BY
+			esc_html__( 'Prefix audio file names with a directory (Optional). Note that changing this setting later could break existing URLs.' )
 		);
 	}
 
@@ -185,9 +182,9 @@ final class OptionsPage {
                 aria-describedby="webinista_wreadit_options_domain_described"
             >
             <span id="webinista_wreadit_options_domain_described">%3$s</span>',
-			TextStrings::DOMAIN_LABEL,
+			esc_html__( 'Custom Host URL', 'webinista-wreadit' ),
 			esc_attr( $_domain ),
-			esc_html( TextStrings::DOMAIN_DESCRIBED_BY )
+			esc_html__( 'Include the https:// prefix. (Optional)', 'webinista-wreadit' )
 		);
 	}
 
@@ -232,7 +229,7 @@ final class OptionsPage {
             >
             %s
             </select>',
-			esc_html( TextStrings::VOICE_ENGINES_LABEL ),
+			esc_html__( 'Voice Engine', 'webinista-readit' ),
 			$opts
 		);
 	}
@@ -333,8 +330,7 @@ final class OptionsPage {
             %2$s
             </select>
             <span id="webinista_wreadit_options_region_desc" hidden></span>',
-			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-			TextStrings::AWS_REGION,
+			esc_html__( 'AWS Region', 'webinista-wreadit' ),
 			$opts
 		);
 	}
@@ -365,7 +361,7 @@ final class OptionsPage {
             >
             %s
             </select>',
-			esc_html( TextStrings::VOICE_LABEL ),
+			esc_html__( 'Voice', 'webinista-wreadit' ),
 			$opts
 		);
 	}
@@ -401,7 +397,13 @@ final class OptionsPage {
 	 * @return void
 	 */
 	public static function readit_post_types_heading(): void {
-		printf( '<p>%s</p>', esc_html( TextStrings::POST_TYPES_INTRO_TEXT ) );
+		printf(
+			'<p>%s</p>',
+			esc_html__(
+				'Select which post types can be converted to audio.',
+				'webinista-wreadit'
+			)
+		);
 	}
 
 	/**
@@ -521,7 +523,7 @@ final class OptionsPage {
             >
             %s
             </select>',
-			esc_html( TextStrings::AWS_AUDIO_FORMAT ),
+			esc_html__( 'Audio Format', 'webinista-wreadit' ),
 			$opts
 		);
 	}

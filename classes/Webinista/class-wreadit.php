@@ -219,7 +219,7 @@ final class WreadIt {
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awskey',
 				//phpcs:disabled WordPress.WP.I18n.NonSingularStringLiteralText
-				esc_html__( TextStrings::BLANK_AWS_KEY, 'webinista-wreadit' )
+				esc_html__( 'I need an AWS Key ID.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -230,7 +230,7 @@ final class WreadIt {
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awssecret',
 				//phpcs:disabled WordPress.WP.I18n.NonSingularStringLiteralText
-				esc_html__( TextStrings::BLANK_SECRET_KEY, 'webinista-wreadit' )
+				esc_html__( 'I need a Secret Access Key.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -241,7 +241,7 @@ final class WreadIt {
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awss3bucket',
 				//phpcs:disabled WordPress.WP.I18n.NonSingularStringLiteralText
-				esc_html__( TextStrings::BAD_BUCKET_NAME, 'webinista-wreadit' )
+				esc_html__( 'Your S3 bucket name does not follow AWS rules.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -251,7 +251,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--awsregion',
-				esc_html__( TextStrings::UNKOWN_REGION, 'webinista-wreadit' )
+				esc_html__( 'Please enter a known region name.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -261,7 +261,7 @@ final class WreadIt {
 			add_settings_error(
 				'webinista_wreadit_options',
 				'webinista_wreadit_options_error--domain',
-				esc_html__( TextStrings::INVALID_HOST, 'webinista-wreadit' )
+				esc_html__( 'Please enter a valid host name.', 'webinista-wreadit' )
 			);
 
 		endif;
@@ -383,7 +383,6 @@ final class WreadIt {
 		wp_register_style(
 			'webinista-wreadit',
 			// Using dirname to get the parent directory of the current directory.
-			//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 			plugins_url( '/build/style-index.css', dirname( __DIR__ ) ),
 			array(),
 			Settings::READIT_VERSION
