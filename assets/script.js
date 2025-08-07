@@ -68,7 +68,7 @@ class WebinistaWreadIt {
     enable.forEach((o) => { o.disabled = false; });
 
     /* Select any option that does not support the provided engine */
-    const selector = `option:not([data-engine*="${engine}"], [data-engine*="all"])`;
+    const selector = `option:not([data-engine*="${CSS.escape(engine)}"], [data-engine*="all"])`;
     const to_disable = voices_menu.querySelectorAll( selector );
 
     to_disable.forEach((o) => { o.disabled = true; });
