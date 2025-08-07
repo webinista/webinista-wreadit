@@ -248,7 +248,6 @@ final class OptionsPage {
 				return $a['name'] <=> $b['name'];
 			}
 		);
-
 		printf( '<optgroup label="%s">', esc_attr( $key ) );
 		array_walk(
 			$option['voices'],
@@ -268,10 +267,11 @@ final class OptionsPage {
 		['_voice' => $_voice] = $settings;
 
 		printf(
-			'<option value="%2$s" %3$s>%1$s</option>',
+			'<option value="%1$s" %2$s data-engine="%4$s">%3$s</option>',
 			esc_html( $option['label'] ),
-			esc_attr( $option['name'] ),
 			selected( $_voice, $option['name'], false ),
+			esc_attr( $option['name'] ),
+			esc_attr( join( '|', $option['engines'] ) )
 		);
 	}
 
@@ -325,6 +325,7 @@ final class OptionsPage {
 	public static function readit_pollyvoices(): void {
 
 		$voices = LangVoices::get_voices_for_engines( array( 'neural', 'standard' ) );
+		// SORT_STRING is a PHP option constant for ksort.
 		ksort( $voices, SORT_STRING );
 
 		printf(

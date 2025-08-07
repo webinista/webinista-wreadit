@@ -25,3 +25,32 @@ Webinista WreadIt is licensed under the terms of the GNU General Public License,
 ## Contributing
 
 Contributions are welcome. Please read the [Contributing.md](https://github.com/webinista/webinista-wreadit/blob/main/CONTRIBUTING.md) first.
+
+## Changelog
+
+### 1.1.1 / 2025-08-07
+
+#### Bug fixes
+
+- Ensures that a default post types value gets included with form submission. (Regression introduced in version 1.1.0).
+- Changed default voice value to be compat with Standard and Neural engines.
+
+#### Enhancement
+
+- Disables voice values if the selected engine is incompatible.
+
+#### Misc
+
+- Updated Amazon SDK to version 3.352.4
+- Updated @wordpress/components to version 30.1.0
+- Updated @wordpress/dom-ready to version 4.28.0
+- Updated @wordpress/jest-preset-default to 12.28.0
+- Updated @wordpress/scripts to 30.21.0
+
+### 1.1.0 / 2025-08-02
+
+#### Misc
+
+- Bump form-data from 4.0.3 to 4.0.4
+- Rewrite WreadIt audio URLs in the Media Library.
+- Update Wordpress JavaScript packages.

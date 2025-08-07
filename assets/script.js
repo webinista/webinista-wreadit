@@ -61,33 +61,57 @@ class WebinistaWreadIt {
 		var opts = Array.from( regions_menu.querySelectorAll( 'option' ) );
 		opts.forEach( ( o ) => ( o.disabled = false ) );
 	}
+
+  static disable_voices_for_engine( voices_menu, engine ) {
+    /* Enable all options to start */
+    const enable = voices_menu.querySelectorAll( 'option[disabled], option:disabled' );
+    enable.forEach((o) => { o.disabled = false; });
+
+    /* Select any option that does not support the provided engine */
+    const selector = `option:not([data-engine*="${engine}"], [data-engine*="all"])`;
+    const to_disable = voices_menu.querySelectorAll( selector );
+
+    to_disable.forEach((o) => { o.disabled = true; });
+  }
 }
 
 ( ( w, d ) => {
-	var f = d.querySelector( '#webinista_wreadit--options' );
-	var voices = d.getElementById( 'webinista_wreadit_options[_polly_engine]' );
-	var regions = d.getElementById( 'webinista_wreadit_options[_awsregion]' );
+	const f = d.querySelector( '#webinista_wreadit--options' );
+	const engines = d.getElementById( 'webinista_wreadit_options[_polly_engine]' );
+	const regions = d.getElementById( 'webinista_wreadit_options[_awsregion]' );
+	const voices  = d.getElementById( 'webinista_wreadit_options[_voice]' );
 
-	f.addEventListener( 'focusout', ( event ) => {
-		var { target } = event;
+  const onFocusOut      = ( event ) => {
+    var { target } = event;
 		var { type, nodeName, value } = target;
 
-		if ( nodeName === 'INPUT' && type === 'text' ) {
+    if ( nodeName === 'INPUT' && type === 'text' ) {
 			target.value = value.toString().trim();
 		}
-	} );
-
-	voices.addEventListener( 'change', ( event ) => {
+	}
+  const onChangeRegions = ( event ) => {
 		if ( 'neural' == event.target.value ) {
 			WebinistaWreadIt.disable_standard( regions );
 		} else {
 			WebinistaWreadIt.enable_standard( regions );
 		}
-	} );
+	}
+  const onChangeVoices  = ( event ) => {
+    const { target } = event;
+    WebinistaWreadIt.disable_voices_for_engine( voices, target.value );
+	}
+
+	f.addEventListener( 'focusout', onFocusOut );
+  engines.addEventListener( 'change', onChangeRegions );
+  engines.addEventListener( 'change', onChangeVoices );
+
 
 	window.addEventListener( 'load', () => {
-		if ( 'neural' == voices.value ) {
+		if ( 'neural' == engines.value ) {
 			WebinistaWreadIt.disable_standard( regions );
 		}
+
+		// Disable voices for selected engine
+		WebinistaWreadIt.disable_voices_for_engine( voices, engines.value );
 	} );
 } )( window, document );

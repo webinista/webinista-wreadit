@@ -90,9 +90,11 @@ _Audio files must be publicly readable_ to be available to your listeners.
 
 = 1.1.1 / 2025-08-07 =
 
-# Bug fix
+# Bug fixes
 
-- Ensure that a default post types value gets included with form submission. (Regression introduced in version 1.1.0).
+- Ensures that a default post types value gets included with form submission. (Regression introduced in version 1.1.0).
+- Changed default voice value to be compat with Standard and Neural engines.
+- Disables voice values if the selected engine is incompatible.
 
 # Misc
 

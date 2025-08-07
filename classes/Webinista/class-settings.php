@@ -58,7 +58,7 @@ final class Settings {
 		'_awss3bucket'  => '',
 		'_awsregion'    => 'us-east-1',
 		'_polly_engine' => 'standard',
-		'_voice'        => 'Danielle',
+		'_voice'        => 'Kendra',
 		'_post_types'   => array( 'post' => '1' ),
 		'_format'       => 'mp3',
 		'_path_prefix'  => '',
