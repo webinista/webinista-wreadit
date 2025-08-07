@@ -115,6 +115,10 @@ require_once dirname(plugin_dir_path(__FILE__)) . '/classes/load.php';
 	<details open>
 		<summary><h2>Allow for Post Types</h2></summary>
 		<div>
+		<input type="hidden"
+			id="webinista_wreadit_options[_post_types][post]"
+			name="webinista_wreadit_options[_post_types][post]"
+			value="1">
 		<?php OptionsPage::readit_post_types(); ?>
 		</div>
 	</details>

@@ -422,11 +422,6 @@ final class OptionsPage {
 
 		[ '_post_types' => $_post_types ] = $options;
 
-		$output = '<input type="hidden"
-					id="webinista_wreadit_options[_post_types][post]"
-					name="webinista_wreadit_options[_post_types][post]"
-					value="1">';
-
 		foreach ( $allowed_post_types as $key => $value ) :
 			$name       = sprintf( 'webinista_wreadit_options[_post_types][%s]', $key );
 			$is_checked = '';

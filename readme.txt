@@ -1,10 +1,10 @@
 === Webinista WreadIt ===
 Contributors: webinista
 Donate link: https://ko-fi.com/webinista
-Tags: text-to-speech
+Tags: text-to-speech, text to audio, speech, tts
 Requires at least: 6.7
 Tested up to: 6.8
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 8.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -14,15 +14,13 @@ A text-to-speech plugin for WordPress that uses Amazon Polly.
 
 Webinista WreadIt <https://wreadit.webinista.com>
 
-Current version: v1.1.0 [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
-
 A WordPress plugin for creating audio versions of your posts using Amazon Polly.
 
-Prerequisites
+Current version: v1.1.1. [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
 
-This plugin assumes that you are familiar with Amazon Web Services (https://aws.amazon.com/) and that you have an account.
+You can also view, edit, or download the [source code](https://github.com/webinista/webinista-wreadit/) from GitHub.
 
-License
+= License =
 
 Webinista WreadIt is licensed under the terms of the GNU General Public License, version 3. Some of its dependencies use the MIT 2.0 and Apache 2.0 licenses.
 
@@ -35,4 +33,80 @@ Webinista WreadIt is licensed under the terms of the GNU General Public License,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU General Public License for more details.
+
+= Prerequisites =
+
+This plugin assumes that you are familiar with [Amazon Web Services](https://aws.amazon.com/) and that you have an account. You will need:
+
+- An Amazon Simple Storage Service (S3) bucket.
+- An IAM user with full access to Polly and read/write access to the S3 bucket.
+- A key ID and Secret Access Key for the IAM user.
+
+
+== Installation ==
+
+1. Upload the `webinista-wreadit` folder to your `/wp-content/plugins/` directory. You can also upload the entire `.zip` file via the plugin page of WordPress by clicking 'Add New' and selecting the zip from your computer.
+2. Activate the plugin
+3. Enter your credentials in the appropriate fields.
+
+== Development ==
+
+You can also build this plugin from source. This requires having [Node](https://nodejs.org/), PHP, and [Composer](https://getcomposer.org/) available on your system.
+
+1. Clone the GitHub repo https://github.com/webinista/webinista-wreadit
+2. From `webinista-wreadit` directory, run the following commands:
+  1. `npm install` to install the JavaScript dependencies for the front-end.
+  2. `composer install` to install PHP dependencies.
+3. Use `npm run build` to generate the front-end plugin files.
+4. Upload the `webinista-wreadit` directory to `/wp-content/plugins/`.
+
+Activate the plugin and add your credentials before using.
+
+== External services ==
+
+This plugin requires Amazon Polly, and Amazon S3. Clicking the _Generate Audio Version_ button sends the following data to Amazon Polly:
+
+- The title and text of the blog post.
+- The slug of the blog post.
+- The _display name_ of the post's author. (Manage using the _Display name publicly as_ setting on the _Edit User_ screen.)
+- Your AWS Key ID.
+- Your Secret Access Key.
+- The name of your S3 bucket.
+
+Amazon Polly requires your Key ID and Secret Access Key in order to authenticate the request. Amazon Polly saves the generated audio file to your S3 bucket.
+
+Webinista WreadIt uses [S3's virtual hosting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html
+). URLs for audio files use the pattern shown below, unless you've set a custom domain.
+
+`https://<bucket name>.s3.<region code>.amazonaws.com/<optional prefix/><file name>`
+
+For example, if your bucket name is `myblogsaudio`, your bucket region is `us-east-2`, and you've set a `media/` prefix, your audio URLs will begin with  `https://myblogsaudio.s3.us-east-2.amazonaws.com/media/`.
+
+File names begin with the slug of each blog post. Amazon Polly appends a unique identifier to the name.
+
+_Audio files must be publicly readable_ to be available to your listeners.
+
+== Changelog ==
+
+= 1.1.1 / 2025-08-07 =
+
+# Bug fix
+
+- Ensure that a default post types value gets included with form submission. (Regression introduced in version 1.1.0).
+
+# Misc
+
+- Updated Amazon SDK to version 3.352.4
+- Updated @wordpress/components to version 30.1.0
+- Updated @wordpress/dom-ready to version 4.28.0
+- Updated @wordpress/jest-preset-default to 12.28.0
+- Updated @wordpress/scripts to 30.21.0
+
+= 1.1.0 / 2025-08-02 =
+
+# Misc
+
+- Bump form-data from 4.0.3 to 4.0.4
+- Rewrite WreadIt audio URLs in the Media Library.
+- Update Wordpress JavaScript packages.
 
