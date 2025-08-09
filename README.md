@@ -33,15 +33,14 @@ Contributions are welcome. Please read the [Contributing.md](https://github.com/
 #### Bug fixes
 
 - Ensures that a default post types value gets included with form submission. (Regression introduced in version 1.1.0).
-- Changed default voice value to be compat with Standard and Neural engines.
 
 #### Enhancement
 
-- Disables voice values if the selected engine is incompatible.
+- Disables voice options that are incompatible with the selected engine.
 
 #### Misc
 
-- Updated Amazon SDK to version 3.352.4
+- Updated Amazon SDK to version 3.352.5
 - Updated @wordpress/components to version 30.1.0
 - Updated @wordpress/dom-ready to version 4.28.0
 - Updated @wordpress/jest-preset-default to 12.28.0
