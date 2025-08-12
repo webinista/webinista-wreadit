@@ -94,6 +94,7 @@ final class WreadIt {
 	 * @since 1.0
 	 */
 	public function setup_post_types(): void {
+
 		$args_revisions = array(
 			'public'              => false,
 			'exclude_from_search' => true,
@@ -183,13 +184,14 @@ final class WreadIt {
 	 * @since 1.2
 	 */
 	public function metabox_register(): void {
+
 		add_meta_box(
 			'webinista_wreadit_audiogen',
 			esc_html__('Create an audio version', 'webinista-wreadit'),
 			array( $this, 'metabox_callback'),
 			'post',
 			'side',
-			'high'
+			'default'
 		);
 
 
@@ -204,8 +206,24 @@ final class WreadIt {
 		// TO DO: get post types argument from WreadIt settings.
 		$post_types = array( 'post', 'page' );
 
-		error_log( print_r(func_get_args(), true ) );
-		print '<h1>HI</h1>';
+		printf(
+			'<div><label for="%1$s">%2$s</label>
+			 <input
+			 	type="url"
+			 	name="%1$s"
+			 	id="%1$s"
+			 	value=""
+			 	class="components-text-control__input is-next-40px-default-size" />
+			 </div>',
+			'wreadit_url',
+			esc_html__('Audio file URL', 'webinista-wreadit')
+		);
+
+		printf(
+			'<button type="button" class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
+			esc_html__('Generate audio version', 'webinista-wreadit')
+		);
+
 	}
 
 
