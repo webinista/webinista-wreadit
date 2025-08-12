@@ -51,7 +51,6 @@ final class WreadIt {
 	 * @since 1.0
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'sidebar_register' ) );
 		add_action( 'init', array( $this, 'setup_post_types' ) );
 		add_action( 'rest_api_init', array( $this, 'setup_meta_key' ) );
 		add_action( 'rest_api_init', array( $this, 'setup_routes' ) );
@@ -63,6 +62,16 @@ final class WreadIt {
 
 		add_filter( 'plugin_action_links', array( $this, 'set_plugin_action_links' ), 10, 3 );
 		add_filter( 'wp_get_attachment_url', array( $this, 'rewrite_media_urls' ), 20, 1 );
+
+		/*
+		If the Classic_Editor is enabled, add a metabox.
+		Otherwise, register a sidebar.
+		*/
+		if( class_exists( 'Classic_Editor' ) ) {
+			add_action( 'add_meta_boxes', array( $this, 'metabox_register' ) );
+		} else {
+			add_action( 'init', array( $this, 'sidebar_register' ) );
+		}
 	}
 
 	/**
@@ -169,7 +178,39 @@ final class WreadIt {
 	}
 
 	/**
-	 * Registers the plugin in the sidebar.
+	 * Registers a meta box if the Classic Editor plugin is in use.
+	 *
+	 * @since 1.2
+	 */
+	public function metabox_register(): void {
+		add_meta_box(
+			'webinista_wreadit_audiogen',
+			esc_html__('Create an audio version', 'webinista-wreadit'),
+			array( $this, 'metabox_callback'),
+			'post',
+			'side',
+			'high'
+		);
+
+
+	}
+
+	/**
+	 * Callback for metabox_register
+	 *
+	 * @since 1.2
+	 */
+	public function metabox_callback( $post_type ): void {
+		// TO DO: get post types argument from WreadIt settings.
+		$post_types = array( 'post', 'page' );
+
+		error_log( print_r(func_get_args(), true ) );
+		print '<h1>HI</h1>';
+	}
+
+
+	/**
+	 * Registers the plugin in the sidebar if the Classic Editor plugin isn't in use.
 	 *
 	 * @since 1.0
 	 */
