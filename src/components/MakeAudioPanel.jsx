@@ -78,7 +78,6 @@ const MakeAudioPanel = ( {
 								value={ audioUrl }
 								readOnly
 								type="url"
-								label="Audio version URL"
 								id="wreadit_url"
 								label="Audio file URL"
 								ref={ urlRef }
