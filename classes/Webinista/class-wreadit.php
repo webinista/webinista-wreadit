@@ -405,7 +405,7 @@ final class WreadIt {
 				'webinista-wreadit-admin',
 				// Using dirname to get the parent directory of the current directory.
 				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
-				plugins_url( '/assets/script.js', dirname( __DIR__ ) ),
+				plugins_url( '/cssjs/script.js', dirname( __DIR__ ) ),
 				array(),
 				Settings::READIT_VERSION,
 				array( 'in_footer' => true )
@@ -416,7 +416,7 @@ final class WreadIt {
 				'webinista-wreadit-admin',
 				// Using dirname to get the parent directory of the current directory.
 				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
-				plugins_url( '/assets/style.css', dirname( __DIR__ ) ),
+				plugins_url( '/cssjs/style.css', dirname( __DIR__ ) ),
 				array( 'forms' ),
 				Settings::READIT_VERSION
 			);
