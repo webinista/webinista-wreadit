@@ -3,23 +3,26 @@
 /.github
 /node_modules
 
-composer.lock   export-ignore
-vendor/bin      export-ignore
-vendor/dealerdirect  export-ignore
-vendor/wp-coding-standards  export-ignore
-vendor/phpcsstandards  export-ignore
-vendor/squizlabs export-ignore
-package.json  export-ignore
-package-lock.json export-ignore
-.gitignore  export-ignore
-.gitattributes  export-ignore
-CONTRIBUTING.md export-ignore
-README.md export-ignore
-/src  export-ignore
-src/components  export-ignore
-src/tests export-ignore
-src/*.scss  export-ignore
-src/*.js  export-ignore
+composer.lock
+vendor/bin
+vendor/dealerdirect
+vendor/wp-coding-standards
+vendor/phpcsstandards
+vendor/squizlabs
+package.json
+package-lock.json
+.gitignore
+.gitattributes
+CONTRIBUTING.md
+README.md
+/src
+src/components
+src/tests
+src/*.scss
+src/*.js
+/assets
+/tags
+/trunk
 
 .distignore
 .gitignore
