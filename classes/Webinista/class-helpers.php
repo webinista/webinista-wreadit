@@ -475,4 +475,24 @@ final class Helpers {
 
 		return apply_filters( 'get_the_guid', $guid, $id );
 	}
+
+	/**
+	 * Returns the current plugin version.
+	 *
+	 * @since 1.1.1
+	 * @return string Returns the plugin version from webinista-wreadit.php
+	 */
+	public static function get_plugin_version(): string {
+		$meta = get_plugin_data(
+			WP_PLUGIN_DIR . '/webinista-wreadit/webinista-wreadit.php',
+			false,
+			false
+		);
+
+		$version = null;
+		if ( ! empty( $meta['Version'] ) ) :
+			$version = $meta['Version'];
+		endif;
+		return $version;
+	}
 }
