@@ -42,10 +42,6 @@ class WebinistaWreadItClassic {
 
     const opts = {method: 'GET', ...options };
 
-    console.log( opts )
-
-
-
     fetch( path, opts )
       .then(function(response) {
         if(response.ok) {
@@ -64,12 +60,29 @@ class WebinistaWreadItClassic {
 
     return params.toString();
   }
+
+  static updateViewWithData( data ) {
+    if( !!data.length ) {
+      alert('UPDATE THE FIELD AND SHOW THE OTHER BUTTONS');
+
+      jQuery('[id=wreadit_url]' ).attr( 'disabled', true );
+      jQuery('[id=wreadit_url]' ).val( data[0].source_url);
+
+      jQuery('[id=wreadit_request_url]' ).attr('hidden', true )
+
+
+    } else {
+
+      // console.log( jQuery('[id=wreadit_url]') )
+      alert('SHOW THE GENERATE AUDIO BUTTON.')
+    }
+  }
 }
 
 ( ( w, d ) => {
 
   async function makeRequest( path, options, callback ) {
-    return WebinistaWreadItClassic.apiRequest( path, options, callback )
+    return WebinistaWreadItClassic.apiRequest( path, options, callback );
   }
 
   const params = WebinistaWreadItClassic.buildQuery({
@@ -80,47 +93,11 @@ class WebinistaWreadItClassic {
   makeRequest(
     `/wp-json/wp/v2/media/?${params}`,
     { method: 'GET' },
-    (data) => {
-      if( !!data.length ) {
-        alert('UPDATE THE FIELD AND SHOW THE OTHER BUTTONS')
-      } else {
-        alert('SHOW THE GENERATE AUDIO BUTTON.')
-      }
-
-    }
+    WebinistaWreadItClassic.updateViewWithData
   );
 
-  /* async function checkAudio() {
-
-    const params = new URLSearchParams({
-      post_id: WebinistaWreadItClassic.post_id(),
-      _locale: 'user'
-    });
-
-    var foo = fetch(
-    `/wreadit/v1/audio?=${params.toString()}`,
-    {
-      method: 'GET'
-    })
-    .then(function(response) {
-      if(response.ok) {
-        return response.json();
-      } else {
-        return JSON.stringify( {} );
-      }
-    })
-    .then((data) => {
-      console.log(data )
-    })
-    .catch((error) => {
-      alert( error );
-    });
-  }
-
-  checkAudio(); */
-
 	window.addEventListener( 'load', () => {
-    const requestAudio = jQuery('[id=wreadit_request_url]');
+    // const requestAudio = jQuery('[id=wreadit_request_url]');
 
 
 

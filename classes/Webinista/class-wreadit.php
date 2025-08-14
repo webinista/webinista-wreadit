@@ -228,10 +228,27 @@ final class WreadIt {
 
 		printf(
 			'<button
+				hidden
 				type="button"
 				id="wreadit_request_url"
 				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
 			esc_html__( 'Generate audio version', 'webinista-wreadit' )
+		);
+
+		printf(
+			'<button
+				type="button"
+				id="wreadit_copy_to_clipboard"
+				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
+			esc_html__( 'Copy to clipboard', 'webinista-wreadit' )
+		);
+
+		printf(
+			'<button
+				type="button"
+				id="wreadit_delete_audio"
+				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
+			esc_html__( 'Delete audio', 'webinista-wreadit' )
 		);
 	}
 

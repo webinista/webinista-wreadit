@@ -28,3 +28,11 @@
   display:block;
   margin-block: 8px;
 }
+
+[id=webinista_wreadit_audiogen] button[id^=wreadit][hidden] {
+  display: none;
+}
+
+[id=webinista_wreadit_audiogen] button[id^=wreadit]:last-of-type {
+  margin-inline-start: 8px
+}
