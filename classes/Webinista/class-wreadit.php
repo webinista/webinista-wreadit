@@ -54,7 +54,6 @@ final class WreadIt {
 		add_action( 'init', array( $this, 'setup_post_types' ) );
 		add_action( 'rest_api_init', array( $this, 'setup_meta_key' ) );
 		add_action( 'rest_api_init', array( $this, 'setup_routes' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_assets' ) );
 
 		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -67,9 +66,11 @@ final class WreadIt {
 		If the Classic_Editor is enabled, add a metabox.
 		Otherwise, register a sidebar.
 		*/
-		if( class_exists( 'Classic_Editor' ) ) {
+		if ( class_exists( 'Classic_Editor' ) ) {
 			add_action( 'add_meta_boxes', array( $this, 'metabox_register' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets_classic' ) );
 		} else {
+			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_assets' ) );
 			add_action( 'init', array( $this, 'sidebar_register' ) );
 		}
 	}
@@ -187,24 +188,30 @@ final class WreadIt {
 
 		add_meta_box(
 			'webinista_wreadit_audiogen',
-			esc_html__('Create an audio version', 'webinista-wreadit'),
-			array( $this, 'metabox_callback'),
+			esc_html__( 'Create an audio version', 'webinista-wreadit' ),
+			array( $this, 'metabox_callback' ),
 			'post',
 			'side',
 			'default'
 		);
-
-
 	}
 
 	/**
 	 * Callback for metabox_register
 	 *
 	 * @since 1.2
+	 * @param \WP_Post $post A WP_Post object.
+	 * @return void
 	 */
-	public function metabox_callback( $post_type ): void {
+	public function metabox_callback( \WP_Post $post ): void {
+
 		// TO DO: get post types argument from WreadIt settings.
-		$post_types = array( 'post', 'page' );
+		$wreadit_types = Settings::get_option( '_post_types' );
+
+		if ( ! array_key_exists( $post->post_type, $wreadit_types ) ) :
+			print '';
+			return;
+		endif;
 
 		printf(
 			'<div><label for="%1$s">%2$s</label>
@@ -216,14 +223,16 @@ final class WreadIt {
 			 	class="components-text-control__input is-next-40px-default-size" />
 			 </div>',
 			'wreadit_url',
-			esc_html__('Audio file URL', 'webinista-wreadit')
+			esc_html__( 'Audio file URL', 'webinista-wreadit' )
 		);
 
 		printf(
-			'<button type="button" class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
-			esc_html__('Generate audio version', 'webinista-wreadit')
+			'<button
+				type="button"
+				id="wreadit_request_url"
+				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
+			esc_html__( 'Generate audio version', 'webinista-wreadit' )
 		);
-
 	}
 
 
@@ -239,7 +248,7 @@ final class WreadIt {
 			//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 			plugins_url( '/build/index.js', dirname( __DIR__ ) ),
 			array( 'wp-plugins', 'wp-editor', 'react' ),
-			Settings::READIT_VERSION,
+			Helpers::get_plugin_version(),
 			array( 'in_footer' => false )
 		);
 	}
@@ -444,7 +453,7 @@ final class WreadIt {
 			// Using dirname to get the parent directory of the current directory.
 			plugins_url( '/build/style-index.css', dirname( __DIR__ ) ),
 			array(),
-			Settings::READIT_VERSION
+			Helpers::get_plugin_version()
 		);
 
 		wp_enqueue_script( 'webinista-wreadit' );
@@ -452,35 +461,36 @@ final class WreadIt {
 	}
 
 	/**
-	 * Enqueue assets style sheets for sidebar.
+	 * Enqueue assets style sheets for settings page.
 	 *
 	 * @since 1.0
 	 * @return void
 	 */
 	public function enqueue_settings_assets(): void {
-
 		if ( is_admin() && Helpers::is_wreadit_settings_page() ) :
+			$identifier = 'webinista-wreadit-admin';
+
 			wp_register_script(
-				'webinista-wreadit-admin',
+				$identifier,
 				// Using dirname to get the parent directory of the current directory.
 				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 				plugins_url( '/cssjs/script.js', dirname( __DIR__ ) ),
 				array(),
-				Settings::READIT_VERSION,
+				Helpers::get_plugin_version(),
 				array( 'in_footer' => true )
 			);
-			wp_enqueue_script( 'webinista-wreadit-admin' );
+			wp_enqueue_script( $identifier );
 
 			wp_register_style(
-				'webinista-wreadit-admin',
+				$identifier,
 				// Using dirname to get the parent directory of the current directory.
 				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
 				plugins_url( '/cssjs/style.css', dirname( __DIR__ ) ),
-				array( 'forms' ),
-				Settings::READIT_VERSION
+				array(),
+				Helpers::get_plugin_version()
 			);
 
-			wp_enqueue_style( 'webinista-wreadit-admin' );
+			wp_enqueue_style( $identifier );
 
 			// Removes maintenance and update nag boxes.
 			remove_action( 'admin_notices', 'maintenance_nag', 10 );
@@ -488,6 +498,43 @@ final class WreadIt {
 
 		endif;
 	}
+
+
+	/**
+	 * Enqueue assets for the meta box when the Classic Editor plugin is active.
+	 *
+	 * @since 1.1.1
+	 * @param string $hook_suffix The current admin page.
+	 * @return void
+	 */
+	public function enqueue_assets_classic( string $hook_suffix ): void {
+		if ( is_admin() && ( 'post.php' === $hook_suffix ) ) :
+			$identifier = 'webinista-wreadit-admin-classic';
+
+			wp_register_style(
+				$identifier,
+				// Using dirname to get the parent directory of the current directory.
+				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
+				plugins_url( '/cssjs/classic.css', dirname( __DIR__ ) ),
+				array(),
+				Helpers::get_plugin_version()
+			);
+			wp_enqueue_style( $identifier );
+
+			wp_register_script(
+				$identifier,
+				// Using dirname to get the parent directory of the current directory.
+				//phpcs:ignore Modernize.FunctionCalls.Dirname.FileConstant
+				plugins_url( '/cssjs/classic.js', dirname( __DIR__ ) ),
+				array( 'jquery' ),
+				Helpers::get_plugin_version(),
+				true
+			);
+			wp_enqueue_script( $identifier );
+
+		endif;
+	}
+
 
 	/**
 	 * Validates that the post id is correctly formatted and for an existing post
