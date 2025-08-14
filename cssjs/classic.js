@@ -40,38 +40,55 @@ class WebinistaWreadItClassic {
       throw new Error('Path parameter is required.');
     }
 
-    const opts = { method: 'GET', ...options };
+    const opts = {method: 'GET', ...options };
+
+    console.log( opts )
+
+
 
     fetch( path, opts )
       .then(function(response) {
-
-        // console.log( response.headers )
-
         if(response.ok) {
           return response.json();
         } else {
           return JSON.stringify( {} );
         }
       })
-      .then((data) => {
-        console.log( data )
-      })
-      .catch((error) => {
-        alert( error );
-      });
-
+      .then( callback )
+      .catch(( error ) => { console.log( error ); });
     return false;
   }
 
+  static buildQuery( obj = {} ) {
+    const params = new URLSearchParams( obj );
+
+    return params.toString();
+  }
 }
 
 ( ( w, d ) => {
 
-  async function foo( path, options, callback ) {
-    return WebinistaWreadItClassic.apiRequest( path )
+  async function makeRequest( path, options, callback ) {
+    return WebinistaWreadItClassic.apiRequest( path, options, callback )
   }
 
-  var bar = foo(`/wp-json/wp/v2/posts/${WebinistaWreadItClassic.postId()}`);
+  const params = WebinistaWreadItClassic.buildQuery({
+    parent: WebinistaWreadItClassic.postId(),
+    type: 'attachment'
+  });
+
+  makeRequest(
+    `/wp-json/wp/v2/media/?${params}`,
+    { method: 'GET' },
+    (data) => {
+      if( !!data.length ) {
+        alert('UPDATE THE FIELD AND SHOW THE OTHER BUTTONS')
+      } else {
+        alert('SHOW THE GENERATE AUDIO BUTTON.')
+      }
+
+    }
+  );
 
   /* async function checkAudio() {
 
