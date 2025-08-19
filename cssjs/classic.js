@@ -79,6 +79,14 @@ class WebinistaWreadItClassic {
 
 ( ( w, d ) => {
 
+  async function writeClipboardText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   async function makeRequest( path, options, callback ) {
     return WebinistaWreadItClassic.apiRequest( path, options, callback );
   }
@@ -96,6 +104,7 @@ class WebinistaWreadItClassic {
 
 	window.addEventListener( 'load', () => {
     const requestAudio = jQuery('[id=wreadit_request_url]');
+    const copy2Clipboard = jQuery('[id=wreadit_copy_to_clipboard]');
 
     requestAudio.on('click', (event) => {
 
@@ -115,5 +124,12 @@ class WebinistaWreadItClassic {
         )
     });
 
+    copy2Clipboard.on('click', (event) => {
+      let url = '';
+      if(jQuery('[id=wreadit_url]').val() ) {
+        url = jQuery('[id=wreadit_url]').val();
+      }
+      writeClipboardText( url )
+    });
 	});
 } )( window, document );

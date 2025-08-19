@@ -57,6 +57,9 @@
     color: #fff;
     box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--is-destructive);
   }
+}
 
-
+[id=wreadit_url]:disabled {
+  background: #f7f7f7;
+  color: #444;
 }
