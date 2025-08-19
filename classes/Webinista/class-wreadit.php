@@ -197,46 +197,31 @@ final class WreadIt {
 	}
 
 	/**
-	 * Callback for metabox_register
+	 * Prints the view if the audio file exists.
 	 *
 	 * @since 1.2
-	 * @param \WP_Post $post A WP_Post object.
 	 * @return void
 	 */
-	public function metabox_callback( \WP_Post $post ): void {
-
-		// TO DO: get post types argument from WreadIt settings.
-		$wreadit_types = Settings::get_option( '_post_types' );
-
-		if ( ! array_key_exists( $post->post_type, $wreadit_types ) ) :
-			print '';
-			return;
-		endif;
-
+	protected function print_audio_exists_view(): void {
 		printf(
-			'<div><label for="%1$s">%2$s</label>
+			'<div hidden>
+			 <p>
+			 <label for="%1$s">%2$s</label>
 			 <input
+				disabled
 			 	type="url"
 			 	name="%1$s"
 			 	id="%1$s"
 			 	value=""
 			 	class="components-text-control__input is-next-40px-default-size" />
-			 </div>',
+			 </p>',
 			'wreadit_url',
 			esc_html__( 'Audio file URL', 'webinista-wreadit' )
 		);
 
 		printf(
-			'<button
-				hidden
-				type="button"
-				id="wreadit_request_url"
-				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
-			esc_html__( 'Generate audio version', 'webinista-wreadit' )
-		);
-
-		printf(
-			'<button
+			'<p>
+			 <button
 				type="button"
 				id="wreadit_copy_to_clipboard"
 				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
@@ -247,9 +232,48 @@ final class WreadIt {
 			'<button
 				type="button"
 				id="wreadit_delete_audio"
-				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>',
+				class="is-next-40px-default-size is-primary button button-primary button-large is-destructive">%s</button>
+			 </p>
+			</div>',
 			esc_html__( 'Delete audio', 'webinista-wreadit' )
 		);
+	}
+
+	/**
+	 * Prints the generate audio view
+	 *
+	 * @since 1.2
+	 * @return void
+	 */
+	protected function print_generate_audio_view(): void {
+
+		printf(
+			'<p><button
+				type="button"
+				id="wreadit_request_url"
+				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>
+			 </p>',
+			esc_html__( 'Generate audio version', 'webinista-wreadit' )
+		);
+	}
+
+	/**
+	 * Callback for metabox_register
+	 *
+	 * @since 1.2
+	 * @param \WP_Post $post A WP_Post object.
+	 * @return void
+	 */
+	public function metabox_callback( \WP_Post $post ): void {
+		$wreadit_types = Settings::get_option( '_post_types' );
+
+		if ( ! array_key_exists( $post->post_type, $wreadit_types ) ) :
+			print '';
+			return;
+		endif;
+
+		$this->print_generate_audio_view();
+		$this->print_audio_exists_view();
 	}
 
 
@@ -516,7 +540,6 @@ final class WreadIt {
 		endif;
 	}
 
-
 	/**
 	 * Enqueue assets for the meta box when the Classic Editor plugin is active.
 	 *
@@ -551,7 +574,6 @@ final class WreadIt {
 
 		endif;
 	}
-
 
 	/**
 	 * Validates that the post id is correctly formatted and for an existing post

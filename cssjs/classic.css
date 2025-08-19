@@ -20,6 +20,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+[id=webinista_wreadit_audiogen] {
+  --is-destructive: #b32d2e;
+}
+
 [id=webinista_wreadit_audiogen] label {
   font-weight: bold;
 }
@@ -33,6 +37,26 @@
   display: none;
 }
 
-[id=webinista_wreadit_audiogen] button[id^=wreadit]:last-of-type {
-  margin-inline-start: 8px
+[id=webinista_wreadit_audiogen] button[id^=wreadit]:nth-of-type(2) {
+  margin-inline-start: 8px;
+}
+
+[id=webinista_wreadit_audiogen] .is-destructive {
+  color: var(--is-destructive);
+  background: transparent;
+  border-color: transparent;
+
+  &:hover {
+    color: var(--is-destructive);
+    background: inherit;
+    border-color: var(--is-destructive);
+  }
+
+  &:focus, &:active {
+    background-color: var(--is-destructive);
+    color: #fff;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--is-destructive);
+  }
+
+
 }

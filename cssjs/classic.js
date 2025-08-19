@@ -62,19 +62,17 @@ class WebinistaWreadItClassic {
   }
 
   static updateViewWithData( data ) {
+    const exists = jQuery('[id=webinista_wreadit_audiogen] div > :has([id=wreadit_url])');
+    const gen = jQuery('p:has([id=wreadit_request_url])');
+
     if( !!data.length ) {
-      alert('UPDATE THE FIELD AND SHOW THE OTHER BUTTONS');
+      jQuery('[id=wreadit_url]').attr('value', data[0].source_url );
 
-      jQuery('[id=wreadit_url]' ).attr( 'disabled', true );
-      jQuery('[id=wreadit_url]' ).val( data[0].source_url);
-
-      jQuery('[id=wreadit_request_url]' ).attr('hidden', true )
-
-
+      gen.attr('hidden', true);
+      exists.removeAttr('hidden');
     } else {
 
-      // console.log( jQuery('[id=wreadit_url]') )
-      alert('SHOW THE GENERATE AUDIO BUTTON.')
+      gen.attr('hidden', true);
     }
   }
 }
@@ -97,9 +95,25 @@ class WebinistaWreadItClassic {
   );
 
 	window.addEventListener( 'load', () => {
-    // const requestAudio = jQuery('[id=wreadit_request_url]');
+    const requestAudio = jQuery('[id=wreadit_request_url]');
 
+    requestAudio.on('click', (event) => {
 
+        const fd = new FormData();
+        fd.set('post_id', WebinistaWreadItClassic.postId());
+        fd.set('_wpnonce', null);
+
+        makeRequest(
+          `/wp-json/wreadit/v1/audio?${params}`,
+          {
+            method: 'POST',
+            body: fd
+          },
+          ( response ) => {
+            console.log( response )
+          }
+        )
+    });
 
 	});
 } )( window, document );
