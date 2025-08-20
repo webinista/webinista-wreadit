@@ -42,7 +42,7 @@ class WebinistaWreadItClassic {
 
     const opts = {method: 'GET', ...options };
 
-    fetch( path, opts )
+    window.fetch( path, opts )
       .then(function(response) {
         if(response.ok) {
           return response.json();
@@ -62,15 +62,16 @@ class WebinistaWreadItClassic {
   }
 
   static updateViewWithData( data ) {
+
+
     const exists = jQuery('[id=webinista_wreadit_audiogen] div > :has([id=wreadit_url])');
     const gen = jQuery('p:has([id=wreadit_request_url])');
 
     if( !!data.length ) {
+      console.log( data[0] )
       jQuery('[id=wreadit_url]').attr('value', data[0].source_url );
-
-      gen.attr('hidden', true);
-      exists.removeAttr('hidden');
     } else {
+
 
       gen.attr('hidden', true);
     }
@@ -78,7 +79,6 @@ class WebinistaWreadItClassic {
 }
 
 ( ( w, d ) => {
-
   async function writeClipboardText(text) {
     try {
       await navigator.clipboard.writeText(text);
@@ -99,12 +99,15 @@ class WebinistaWreadItClassic {
   makeRequest(
     `/wp-json/wp/v2/media/?${params}`,
     { method: 'GET' },
-    WebinistaWreadItClassic.updateViewWithData
+    (response) => {
+       WebinistaWreadItClassic.updateViewWithData(response)
+    }
   );
 
 	window.addEventListener( 'load', () => {
     const requestAudio = jQuery('[id=wreadit_request_url]');
     const copy2Clipboard = jQuery('[id=wreadit_copy_to_clipboard]');
+    const deleteAudio = jQuery('[id=wreadit_delete_audio]');
 
     requestAudio.on('click', (event) => {
 
@@ -118,9 +121,7 @@ class WebinistaWreadItClassic {
             method: 'POST',
             body: fd
           },
-          ( response ) => {
-            console.log( response )
-          }
+          ( response ) => { console.log( response ) }
         )
     });
 
@@ -131,5 +132,23 @@ class WebinistaWreadItClassic {
       }
       writeClipboardText( url )
     });
+
+    deleteAudio.on('click', (event) => {
+      const params = {
+        audio_id: 0,
+        post_id: WebinistaWreadItClassic.postId()
+      }
+
+      makeRequest(
+          `/wp-json/wreadit/v1/audio/delete/`,
+          {
+            method: 'POST',
+            body: fd
+          },
+          ( response ) => { console.log( response ) }
+        )
+    });
+
+
 	});
 } )( window, document );
