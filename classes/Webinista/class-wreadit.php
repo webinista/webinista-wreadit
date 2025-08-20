@@ -200,9 +200,11 @@ final class WreadIt {
 	 * Prints the view if the audio file exists.
 	 *
 	 * @since 1.2
+	 * @param int    $audio_id The post ID of the audio file.
+	 * @param string $url The URL of the existing audio file.
 	 * @return void
 	 */
-	protected function print_audio_exists_view(int $audio_id, string $url): void {
+	protected function print_audio_exists_view( int $audio_id, string $url ): void {
 		printf(
 			'<div>
 			 <p>
@@ -211,19 +213,19 @@ final class WreadIt {
 			 	name="%1$s"
 			 	id="wreadit_audio_id"
 			 	value="%2$d" />
-			 <label for="%3$s">%4$s</label>
 			 <input
 			 	disabled
 			 	type="url"
 			 	name="%3$s"
 			 	id="%3$s"
-			 	value=""
+			 	value="%5$s"
 			 	class="components-text-control__input is-next-40px-default-size" />
 			 </p>',
-			esc_attr('wreadit_audio_id'),
-			intval($audio_id, 10),
-			esc_attr('wreadit_url'),
-			esc_html__( 'Audio file URL', 'webinista-wreadit' )
+			esc_attr( 'wreadit_audio_id' ),
+			intval( $audio_id, 10 ),
+			esc_attr( 'wreadit_url' ),
+			esc_html__( 'Audio file URL', 'webinista-wreadit' ),
+			esc_attr( $url )
 		);
 
 		printf(
@@ -255,12 +257,19 @@ final class WreadIt {
 	protected function print_generate_audio_view(): void {
 
 		printf(
-			'<p><button
+			'<p>
+			 <input
+			 	type="hidden"
+			 	name="wreadit_nonce"
+			 	id="wreadit_nonce"
+			 	value="%2$s" />
+			 <button
 				type="button"
 				id="wreadit_request_url"
 				class="is-next-40px-default-size is-primary button button-primary button-large">%s</button>
 			 </p>',
-			esc_html__( 'Generate audio version', 'webinista-wreadit' )
+			esc_html__( 'Generate audio version', 'webinista-wreadit' ),
+			esc_attr( wp_create_nonce( 'wreadit_detach_audio' ) )
 		);
 	}
 
@@ -279,41 +288,32 @@ final class WreadIt {
 			return;
 		endif;
 
-		$audio = get_attached_media('audio', $post->ID );
+		$audio = get_attached_media( 'audio', $post->ID );
 
-		if( !count($audio) ):
+		if ( ! count( $audio ) ) :
 			$this->print_generate_audio_view();
-		else:
+		else :
 			// Gets the first audio attachment returned from the API.
 			$audio = array_shift( $audio );
 
 			// Checks that this is a webinista wreadit file.
-			$isAudioAlternative = get_post_meta(
+			$is_audio_alternative = get_post_meta(
 				$audio->ID,
 				'_webinista',
 				true
 			);
 
 			// If it is a readit file, print the view for when an audio version exists.
-			if ( strval( boolval( $isAudioAlternative ) ) ):
+			if ( boolval( $is_audio_alternative ) ) :
 				$this->print_audio_exists_view(
 					$audio->ID,
 					Helpers::rewrite_url_with_custom_domain( $audio->guid )
 				);
-			else:
+			else :
 				$this->print_generate_audio_view();
 			endif;
 
-
 		endif;
-
-
-
-
-
-
-
-
 	}
 
 
