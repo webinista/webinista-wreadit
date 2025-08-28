@@ -2,3 +2,7 @@ composer.phar
 node_modules
 **/.DS_Store
 src/Volume**
+assets
+tags
+trunk
+.svn
