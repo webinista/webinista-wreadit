@@ -40,10 +40,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Aws\Credentials\Credentials;
-use Aws\Credentials\CredentialProvider;
-use Aws\S3\S3Client;
-use Aws\S3\Exception\S3Exception;
+use Webinista\WreadIt\Aws3\Aws\Credentials\Credentials;
+use Webinista\WreadIt\Aws3\Aws\Credentials\CredentialProvider;
+use Webinista\WreadIt\Aws3\Aws\S3\S3Client;
+use Webinista\WreadIt\Aws3\Aws\S3\Exception\S3Exception;
 
 
 /**
@@ -88,13 +88,13 @@ final class Helpers {
 	}
 
 	/**
-	 * Accepts a \Aws\Api\DateTimeResult object and returns a MySQL-formatted date
+	 * Accepts a WreadIt\Aws3\Aws\Api\DateTimeResult object and returns a MySQL-formatted date
 	 *
 	 * @since 1.0
-	 * @param \Aws\Api\DateTimeResult $date The date to format.
+	 * @param WreadIt\Aws3\Aws\Api\DateTimeResult $date The date to format.
 	 * @return string
 	 */
-	public static function mysql_from_datetime_result( \Aws\Api\DateTimeResult $date ): string {
+	public static function mysql_from_datetime_result( WreadIt\Aws3\Aws\Api\DateTimeResult $date ): string {
 		return $date->format( 'Y-m-d H:i:s' );
 	}
 
@@ -252,9 +252,9 @@ final class Helpers {
 	 *
 	 * @since 1.0
 	 * @param string|int $post_id ID of the post whose audio version should be deleted.
-	 * @return \Aws\Result | string.
+	 * @return WreadIt\Aws3\Aws\Result | string.
 	 */
-	public static function delete_file_from_storage( string|int $post_id ): \Aws\Result|string {
+	public static function delete_file_from_storage( string|int $post_id ): WreadIt\Aws3\Aws\Result|string {
 		$response = new \stdclass();
 		$creds    = new Credentials(
 			Settings::get_option( '_awskey' ),

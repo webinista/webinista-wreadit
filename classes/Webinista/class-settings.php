@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version 0.1.0
  */
 final class Settings {
-	const READIT_VERSION    = '1.1.2';
+	const READIT_VERSION    = '1.2.0';
 	const AUDIO_TYPE        = 'mp3';
 	const OPTIONS_PAGE_NAME = 'wreadit';
 

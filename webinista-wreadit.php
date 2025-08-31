@@ -45,6 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/Aws3/aws-autoloader.php';
 require __DIR__ . '/classes/load.php';
 
 if ( ! class_exists( 'WreadIt' ) ) :

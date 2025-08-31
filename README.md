@@ -64,7 +64,12 @@ Contributions are welcome. Please read the [Contributing.md](https://github.com/
 
 ## Changelog
 
-### 1.1.2 / 2025-09-03
+### 1.2.0 / 2025-09-03
+
+#### Enhancement
+
+- Removed AWS SDK in favor of a subset of the SDK that's been scoped to the project.
+  - See https://github.com/webinista/webinista-wreadit/issues/18
 
 #### Misc
 
@@ -73,7 +78,6 @@ Contributions are welcome. Please read the [Contributing.md](https://github.com/
 - Updated @wordpress/scripts to 30.23.0
 - Updated @wordpress/components to 30.3.0
 - Updated @wordpress/dom-ready to 4.30.0
-
 
 ### 1.1.1 / 2025-08-09
 
