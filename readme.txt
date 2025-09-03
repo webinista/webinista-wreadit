@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/webinista
 Tags: text-to-speech, text to audio, speech, tts
 Requires at least: 6.7
 Tested up to: 6.8
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Requires PHP: 8.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
