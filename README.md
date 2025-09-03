@@ -69,6 +69,10 @@ Contributions are welcome. Please read the [Contributing.md](https://github.com/
 #### Misc
 
 - Updated Amazon SDK to version 3.356.10
+- Updated @wordpress/jest-preset-default to 12.30.0
+- Updated @wordpress/scripts to 30.23.0
+- Updated @wordpress/components to 30.3.0
+- Updated @wordpress/dom-ready to 4.30.0
 
 
 ### 1.1.1 / 2025-08-09
