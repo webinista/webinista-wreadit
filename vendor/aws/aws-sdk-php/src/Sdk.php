@@ -76,10 +76,14 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionAutoScalingPlans(array $args = [])
  * @method \Aws\B2bi\B2biClient createB2bi(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionB2bi(array $args = [])
+ * @method \Aws\BCMDashboards\BCMDashboardsClient createBCMDashboards(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionBCMDashboards(array $args = [])
  * @method \Aws\BCMDataExports\BCMDataExportsClient createBCMDataExports(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionBCMDataExports(array $args = [])
  * @method \Aws\BCMPricingCalculator\BCMPricingCalculatorClient createBCMPricingCalculator(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionBCMPricingCalculator(array $args = [])
+ * @method \Aws\BCMRecommendedActions\BCMRecommendedActionsClient createBCMRecommendedActions(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionBCMRecommendedActions(array $args = [])
  * @method \Aws\Backup\BackupClient createBackup(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionBackup(array $args = [])
  * @method \Aws\BackupGateway\BackupGatewayClient createBackupGateway(array $args = [])
@@ -564,10 +568,6 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionOpenSearchServerless(array $args = [])
  * @method \Aws\OpenSearchService\OpenSearchServiceClient createOpenSearchService(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionOpenSearchService(array $args = [])
- * @method \Aws\OpsWorks\OpsWorksClient createOpsWorks(array $args = [])
- * @method \Aws\MultiRegionClient createMultiRegionOpsWorks(array $args = [])
- * @method \Aws\OpsWorksCM\OpsWorksCMClient createOpsWorksCM(array $args = [])
- * @method \Aws\MultiRegionClient createMultiRegionOpsWorksCM(array $args = [])
  * @method \Aws\Organizations\OrganizationsClient createOrganizations(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionOrganizations(array $args = [])
  * @method \Aws\Outposts\OutpostsClient createOutposts(array $args = [])
@@ -736,8 +736,6 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionShield(array $args = [])
  * @method \Aws\SimSpaceWeaver\SimSpaceWeaverClient createSimSpaceWeaver(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionSimSpaceWeaver(array $args = [])
- * @method \Aws\Sms\SmsClient createSms(array $args = [])
- * @method \Aws\MultiRegionClient createMultiRegionSms(array $args = [])
  * @method \Aws\SnowBall\SnowBallClient createSnowBall(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionSnowBall(array $args = [])
  * @method \Aws\SnowDeviceManagement\SnowDeviceManagementClient createSnowDeviceManagement(array $args = [])
@@ -833,7 +831,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.352.5';
+    const VERSION = '3.356.10';
 
     /** @var array Arguments for creating clients */
     private $args;

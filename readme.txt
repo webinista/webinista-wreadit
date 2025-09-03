@@ -91,6 +91,13 @@ _Audio files must be publicly readable_ to be available to your listeners.
 
 == Changelog ==
 
+= 1.1.2 / 2025-09-03 =
+
+# Misc
+
+- Updated Amazon SDK to version 3.356.10
+
+
 = 1.1.1 / 2025-08-09 =
 
 # Bug fixes
