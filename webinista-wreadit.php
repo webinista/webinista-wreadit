@@ -7,7 +7,7 @@
  * @link        https://webinista.com/wread-it/
  * Plugin Name:       Webinista WreadIt
  * Description:       Turn your posts into audio with Webinista WreadIt and AWS Polly.
- * Version:           1.1.2
+ * Version:           1.2.0
  * Requires at least: 6.7
  * Requires PHP:      8.0
  * Author:            Webinista, Inc.
