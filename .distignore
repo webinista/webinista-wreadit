@@ -20,7 +20,8 @@ src/components  export-ignore
 src/tests export-ignore
 src/*.scss  export-ignore
 src/*.js  export-ignore
-build-as3cf-aws3.sh export-ignore
+build-wreadit-aws3.sh export-ignore
+scoper.inc.php export-ignore
 
 .distignore
 .gitignore

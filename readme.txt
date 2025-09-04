@@ -56,7 +56,8 @@ You can also build this plugin from source. This requires having [Node](https://
 1. Clone the GitHub repo https://github.com/webinista/webinista-wreadit
 2. From `webinista-wreadit` directory, run the following commands:
   1. `npm install` to install the JavaScript dependencies for the front-end.
-  2. `composer install` to install PHP dependencies.
+  2. `composer install` to install PHP dependencies. You may also need to install the [php-scoper plugin](https://github.com/humbug/php-scoper/blob/main/docs/installation.md#composer) using `composer bin php-scoper require --dev humbug/php-scoper`.
+  3. Run the `build-wreadit-aws3.sh` script. This script downloads the latest version of the AWS SDK for PHP, extracts the relevant interfaces and common files, and scopes it to the project's name space.
 3. Use `npm run build` to generate the front-end plugin files.
 4. Upload the `webinista-wreadit` directory to `/wp-content/plugins/`.
 
