@@ -19,8 +19,12 @@ package-lock.json
 svn-commit*
 svn-status.txt
 copy-to-trunk.php
+.svn/
+.DS_Store
 .gitignore
 .gitattributes
+.github
+.git/
 CONTRIBUTING.md
 README.md
 /src
