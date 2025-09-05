@@ -9,6 +9,7 @@ vendor/dealerdirect  export-ignore
 vendor/wp-coding-standards  export-ignore
 vendor/phpcsstandards  export-ignore
 vendor/squizlabs export-ignore
+vendor/bamarni export-ignore
 package.json  export-ignore
 package-lock.json export-ignore
 .gitignore  export-ignore
