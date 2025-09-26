@@ -22,7 +22,7 @@ use Webinista\WreadIt\Aws3\Psr\Http\Message\RequestInterface;
 class SignatureV4 implements SignatureInterface
 {
     use SignatureTrait;
-    const ISO8601_BASIC = 'Ymd\THis\Z';
+    const ISO8601_BASIC = 'Webinista\WreadIt\Aws3\Ymd\THis\Z';
     const UNSIGNED_PAYLOAD = 'UNSIGNED-PAYLOAD';
     const AMZ_CONTENT_SHA256_HEADER = 'X-Amz-Content-Sha256';
     /** @var string */

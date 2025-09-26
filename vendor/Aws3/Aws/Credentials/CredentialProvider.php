@@ -54,7 +54,6 @@ class CredentialProvider
     const ENV_TOKEN_FILE = 'AWS_WEB_IDENTITY_TOKEN_FILE';
     const ENV_SHARED_CREDENTIALS_FILE = 'AWS_SHARED_CREDENTIALS_FILE';
     public const REFRESH_WINDOW = 60;
-
     /**
      * Create a default credential provider that
      * first checks for environment variables,

@@ -1,5 +1,137 @@
 # CHANGELOG
 
+## 3.356.27 - 2025-09-26
+
+* `Aws\BedrockDataAutomation` - Added support for configurable Speaker Labeling and Channel Labeling features for Audio modality.
+* `Aws\CostExplorer` - Support for payer account dimension and billing view health status.
+* `Aws\Connect` - Adds supports for manual contact picking (WorkList) operations on Routing Profiles, Agent Management and SearchContacts APIs.
+* `Aws\Billing` - Add ability to combine custom billing views to create new consolidated views.
+* `Aws\DynamoDBStreams` - Added support for IPv6 compatible endpoints for DynamoDB Streams.
+* `Aws\BedrockAgentRuntime` - This release enhances the information provided through Flow Traces. New information includes source/next node tracking, execution chains for complex nodes, dependency action (operation) details, and dependency traces.
+* `Aws\EC2` - This release includes documentation updates for Amazon EBS General Purpose SSD (gp3) volumes with larger size and higher IOPS and throughput.
+* `Aws\Redshift` - Support tagging and tag propagation to IAM Identity Center for Redshift Idc Applications
+
+## 3.356.26 - 2025-09-25
+
+* `Aws\Lightsail` - Attribute HTTP binding update for Get/Delete operations
+* `Aws\Glue` - Update GetConnection(s) API to return KmsKeyArn & Add 63 missing connection types
+* `Aws\NetworkFirewall` - Network Firewall now introduces Reject and Alert action support for stateful domain list rule groups, providing customers with more granular control over their network traffic.
+
+## 3.356.25 - 2025-09-24
+
+* `Aws\AppStream` - G6f instance support for AppStream 2.0
+* `Aws\KMS` - Documentation only updates for KMS.
+* `Aws\Neptune` - Doc-only update to address customer use.
+* `Aws\DAX` - This release adds support for IPv6-only, DUAL_STACK DAX instances
+* `Aws\CloudWatch` - Fix default dualstack FIPS endpoints in AWS GovCloud(US) regions
+
+## 3.356.24 - 2025-09-23
+
+* `Aws\SSM` - Added Dualstack support to GetDeployablePatchSnapshotForInstance
+* `Aws\SSOAdmin` - Add support for encryption at rest with Customer Managed KMS Key in AWS IAM Identity Center
+* `Aws\EC2` - Add Amazon EC2 R8gn instance types
+* `Aws\SSOOIDC` - This release includes exception definition and documentation updates.
+* `Aws\CleanRooms` - Added support for running incremental ID mapping for rule-based workflows.
+* `Aws\EntityResolution` - Support incremental id mapping workflow for AWS Entity Resolution
+
+## 3.356.23 - 2025-09-22
+
+* `Aws\Batch` - Starting in JAN 2026, AWS Batch will change the default AMI for new Amazon ECS compute environments from Amazon Linux 2 to Amazon Linux 2023. We recommend migrating AWS Batch Amazon ECS compute environments to Amazon Linux 2023 to maintain optimal performance and security.
+* `Aws\EKS` - Adds support for RepairConfig overrides and configurations in EKS Managed Node Groups.
+* `Aws\imagebuilder` - Version ARNs are no longer required for the EC2 Image Builder list-image-build-version, list-component-build-version, and list-workflow-build-version APIs. Calling these APIs without the ARN returns all build versions for the given resource type in the requesting account.
+
+## 3.356.22 - 2025-09-19
+
+* `Aws\MediaLive` - Add MinBitrate for QVBR mode under H264/H265/AV1 output codec. Add GopBReference, GopNumBFrames, SubGopLength fields under H265 output codec.
+* `Aws\KendraRanking` - Model whitespace change - no client difference
+* `Aws\LicenseManagerUserSubscriptions` - Added support for cross-account Active Directories.
+* `Aws\Connect` - This release adds a persistent connection field to UserPhoneConfig that maintains agent's softphone media connection for faster call connections.
+* `Aws\ConfigService` - Add UNKNOWN state to RemediationExecutionState and add IN_PROGRESS/EXITED/UNKNOWN states to RemediationExecutionStepState.
+* `Aws\BedrockAgentCoreControl` - Add tagging and VPC support to AgentCore Runtime, Code Interpreter, and Browser resources. Add support for configuring request headers in Runtime. Fix AgentCore Runtime shape names.
+* `Aws\SQS` - Update invalid character handling documentation for SQS SendMessage API
+
+## 3.356.21 - 2025-09-18
+
+* `Aws\Exception` - Loosens requirements for `$previous` `AwsException` parameter from `Exception` to `Throwable`.
+* `Aws\Bedrock` - Release includes an increase to the maximum policy build document size, an update to DeleteAutomatedReasoningPolicyBuildWorkflow to add ResourceInUseException, and corrections to UpdateAutomatedReasoningPolicyTestCaseRequest.
+* `Aws\ChimeSDKMessaging` - Amazon Chime SDK Messaging GetMessagingSessionEndpoint API now returns dual-stack WebSocket endpoints supporting IPv4/IPv6.
+* `Aws\EC2` - Allowed AMIs adds support for four new parameters - marketplaceProductCodes, deprecationTimeCondition, creationDateCondition and imageNames
+* `Aws\Budgets` - Added BillingViewHealthStatus Exception which is thrown when a Budget is created or updated with a Billing View that is not in the HEALTHY status
+
+## 3.356.20 - 2025-09-17
+
+* `Aws\NetworkFirewall` - Network Firewall now prevents TLS handshakes with the target server until after the Server Name Indication (SNI) has been seen and verified. The monitoring dashboard now provides deeper insights into PrivateLink endpoint candidates and offers filters based on IP addresses and protocol.
+* `Aws\PCS` - Add support for Amazon EC2 Capacity Blocks for ML
+* `Aws\EC2` - Add mac-m4.metal and mac-m4pro.metal instance types.
+
+## 3.356.19 - 2025-09-16
+
+* `Aws\CloudWatchLogs` - Cloudwatch Logs added support for 2 new API parameters in metric and subscription filter APIs to filter log events based on system field values and emit system field values as dimensions and send them to customer destination as additional metadata.
+* `Aws\IVSRealTime` - IVS now offers customers the ability to control the positioning of participants in both grid and PiP layouts based on custom attribute values in participant tokens.
+* `Aws\Budgets` - Add support for custom time periods in budget configuration
+* `Aws\OSIS` - Adds support for cross-account ingestion for push-based sources. This includes resource policies for sharing pipelines across accounts and features for managing pipeline endpoints which enable accessing pipelines across different VPCs, including VPCs in other accounts.
+
+## 3.356.18 - 2025-09-15
+
+* `Aws\S3Control` - Introduce three new encryption filters: EncryptionType (SSE-S3, SSE-KMS, DSSE-KMS, SSE-C, NOT-SSE), KmsKeyArn (for SSE-KMS and DSSE-KMS), and BucketKeyEnabled (for SSE-KMS).
+* `Aws\ObservabilityAdmin` - CloudWatch Observability Admin adds the ability to enable telemetry centralization in customers' Organizations. The release introduces new APIs to manage centralization rules, which define settings to replicate telemetry data to a central destination in the customers' Organization.
+* `Aws\MedicalImaging` - Added support for OpenID Connect (OIDC) custom authorizer
+* `Aws\CostExplorer` - Added endpoint support for eusc-de-east-1 region.
+
+## 3.356.17 - 2025-09-12
+
+* `Aws\` - Once again allow psr/http-message 1.0, for increased compatibility with other packages.
+* `Aws\PaymentCryptography` - Add support for certificates to be signed by 3rd party certificate authorities. New API GetCertificateSigningRequest API and support for providing certificates at run-time for tr-34 import/export
+
+## 3.356.16 - 2025-09-11
+
+* `Aws\Api` - Fixes bug in document type validation where unordered integer array keys are not considered.
+* `Aws\GuardDuty` - Updated Java SDK implementation of entity set status in GuardDuty API.
+* `Aws\DataZone` - adding IAM principal id to IAM user profile details
+* `Aws\QuickSight` - This release adds support for Account level custom permissions, additional Dashboard Options, and Null support for Q&A.
+* `Aws\PrometheusService` - Add Vended Logs APIs for Amazon Prometheus Managed Collector
+* `Aws\RDS` - Adds support for end-to-end IAM authentication in RDS Proxy for MySQL, MariaDB, and PostgreSQL engines.
+* `Aws\MediaLive` - AWS Elemental MediaLive adds a new feature in MediaPackage output group that enables MediaPackage V2 users to control HLS-related parameters directly in MediaLive. These parameter settings are then reflected in MediaPackage outputs, providing more streamlined control over HLS configurations.
+* `Aws\Evs` - CreateEnvironment API now supports parameters (isHcxPublic & hcxNetworkAclId) for HCX migration via public internet, adding flexibility for migration scenarios. New APIs have been added for associating (AssociateEipToVlan) & disassociating (DisassociateEipFromVlan) Elastic IP (EIP) addresses.
+* `Aws\ECS` - This release supports hook details for Amazon ECS lifecycle hooks.
+* `Aws\EMRContainers` - Added nodeLabel support in container provider to aid hardware isolation support for virtual cluster and security configuration.
+
+## 3.356.15 - 2025-09-10
+
+* `Aws\NetworkFlowMonitor` - Added new enum value (AWS::Region) for type field under MonitorLocalResource and MonitorRemoteResource. Workload Insights and Monitor top contributors queries now support a new DestinationCategory (INTER_REGION).
+* `Aws\PaymentCryptography` - AWS Payment Cryptography Service now supports Multi-Region key replication. Customers can choose to automatically distribute keys across AWS Regions.
+
+## 3.356.14 - 2025-09-09
+
+* `Aws\AutoScaling` - Added WaitForTransitioningInstances parameter to the CancelInstanceRefresh API, allowing the caller to cancel an instance refresh without waiting for on-going launches and terminations.
+* `Aws\DataZone` - Adds support for custom blueprints
+* `Aws\MediaPackageV2` - Added CUE tag SCTE output to MediaPackageV2 HLS and LL-HLS manifests.
+* `Aws\SageMaker` - Released IPv6 support with dual-stack domain options on SageMaker Studio and introduced support for p6-b200.48xlarge instance type on SageMaker Studio for JupyterLab and CodeEditor applications.
+* `Aws\CloudWatch` - Added a new API - DescribeAlarmContributors API, to retrieve alarm contributors in ALARM state. Added support in DescribeAlarmHistory API to query alarm contributor history
+* `Aws\Connect` - SDK release for user defined predefined attributes.
+* `Aws\Organizations` - Documentation updates for AWS Organizations APIs.
+
+## 3.356.13 - 2025-09-08
+
+* `Aws\IoTSiteWise` - Add ComputationModelVersion support in IoT SiteWise APIs
+* `Aws\SecurityHub` - This release adds the RESOURCE_NOT_FOUND error code as a possible value in responses to the following operations: BatchGetStandardsControlAssociations, BatchUpdateStandardsControlAssociations, and BatchGetSecurityControls.
+* `Aws\S3` - This release includes backward compatibility work on the "Expires" parameter.
+
+## 3.356.12 - 2025-09-05
+
+* `Aws\ECS` - This is a documentation only release that adds additional information for Amazon ECS Availability Zone rebalancing.
+* `Aws\PCS` - Documentation-only update to add AccountingStorageEnforce to SlurmCustomSetting.
+* `Aws\SageMaker` - Release IPv6 support with dualstack in SageMaker Notebooks, Tiered Storage Checkpointing Support in SageMaker HyperPod and P5.4xlarge instance type for SageMaker Hosting.
+
+## 3.356.11 - 2025-09-04
+
+* `Aws\OpenSearchServerless` - Add support for Federal Information Processing Standards (FIPS) and Federal Risk and Authorization Management Program (FedRAMP) compliance
+* `Aws\CloudFormation` - ListHookResults API now supports retrieving invocation results for all CloudFormation Hooks (previously limited to create change set and Cloud Control operations) with new optional parameters for filtering by Hook status and ARN.
+* `Aws\CleanRooms` - Add support for configurable compute sizes for PySpark jobs.
+* `Aws\VerifiedPermissions` - Amazon Verified Permissions / Features : Adds support for datetime and duration attribute values.
+* `Aws\RDS` - Added new EndpointNetworkType and TargetConnectionNetworkType fields in Proxy APIs to support IPv6
+* `Aws\EC2` - Add m8i, m8i-flex and i8ge instance types.
+
 ## 3.356.10 - 2025-09-03
 
 * `Aws\CleanRooms` - Added support for adding new data provider members to an existing collaboration.

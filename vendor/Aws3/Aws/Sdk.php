@@ -832,8 +832,7 @@ namespace Webinista\WreadIt\Aws3\Aws;
  */
 class Sdk
 {
-    const VERSION = '3.356.10';
-
+    const VERSION = '3.356.27';
     /** @var array Arguments for creating clients */
     private $args;
     /**
