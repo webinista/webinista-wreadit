@@ -254,7 +254,7 @@ class AwsClient implements AwsClientInterface
         if ($this->isUseEndpointV2()) {
             $this->addEndpointV2Middleware();
         }
-        $this->addAuthSelectionMiddleware($config);
+        $this->addAuthSelectionMiddleware($config['config']);
         if (!is_null($this->api->getMetadata('awsQueryCompatible'))) {
             $this->addQueryCompatibleInputMiddleware($this->api);
             $this->addQueryModeHeader();
@@ -277,13 +277,11 @@ class AwsClient implements AwsClientInterface
         $fn = $this->credentialProvider;
         return $fn();
     }
-
     public function getToken()
     {
         $fn = $this->tokenProvider;
         return $fn();
     }
-
     public function getEndpoint()
     {
         return $this->endpoint;
@@ -474,7 +472,6 @@ class AwsClient implements AwsClientInterface
         // originating in supported Lambda runtimes
         $this->handlerList->appendBuild(Middleware::recursionDetection(), 'recursion-detection');
     }
-
     private function addAuthSelectionMiddleware(array $args)
     {
         $list = $this->getHandlerList();

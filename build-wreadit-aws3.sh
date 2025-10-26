@@ -96,8 +96,7 @@ mkdir sdk
     done
     if [ -f remove.list ]
     then
-      cat aws-autoloader.php | grep -v -f remove.list > aws-autoloader.new && mv aws-autoloader.new aws-autoloader.php
-      # && rm remove.list
+      cat aws-autoloader.php | grep -v -f remove.list > aws-autoloader.new && mv aws-autoloader.new aws-autoloader.php && rm remove.list
     fi
 )
 

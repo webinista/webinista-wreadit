@@ -3,8 +3,8 @@ Contributors: webinista
 Donate link: https://ko-fi.com/webinista
 Tags: text-to-speech, text to audio, speech, tts
 Requires at least: 6.7
-Tested up to: 6.8
-Stable tag: 1.2.0
+Tested up to: 6.8.3
+Stable tag: 1.2.2
 Requires PHP: 8.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -16,7 +16,7 @@ Webinista WreadIt <https://wreadit.webinista.com>
 
 A WordPress plugin for creating audio versions of your posts using Amazon Polly.
 
-Current version: v1.2.0 [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
+Current version: v1.2.2 [See all releases](https://github.com/webinista/webinista-wreadit/releases/).
 
 You can also view, edit, or download the [source code](https://github.com/webinista/webinista-wreadit/) from GitHub.
 
@@ -91,6 +91,13 @@ File names begin with the slug of each blog post. Amazon Polly also appends a un
 _Audio files must be publicly readable_ to be available to your listeners.
 
 == Changelog ==
+
+= 1.2.2 / 2025-10-26 =
+
+# Misc
+
+- Now using files based on AWS SDK for PHP version 3.357.2
+
 
 = 1.2.0 / 2025-09-03 =
 

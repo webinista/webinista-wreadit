@@ -148,7 +148,6 @@ class ConfigurationResolver
         if ($type === 'int' && filter_var($value, \FILTER_VALIDATE_INT)) {
             $value = intVal($value);
         }
-
         return $value;
     }
     /**

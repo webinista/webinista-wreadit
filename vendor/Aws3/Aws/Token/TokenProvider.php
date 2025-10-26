@@ -2,7 +2,6 @@
 
 namespace Webinista\WreadIt\Aws3\Aws\Token;
 
-
 use Webinista\WreadIt\Aws3\Aws;
 use Webinista\WreadIt\Aws3\Aws\CacheInterface;
 use Webinista\WreadIt\Aws3\Aws\Exception\TokenException;
@@ -29,9 +28,7 @@ use Webinista\WreadIt\Aws3\GuzzleHttp\Promise;
 class TokenProvider
 {
     const ENV_PROFILE = 'AWS_PROFILE';
-
     use ParsesIniTrait;
-
     /**
      * Create a default token provider tha checks for cached a SSO token from
      * the CLI
@@ -48,7 +45,6 @@ class TokenProvider
         $cacheable = ['sso'];
         $defaultChain = [];
         if (!isset($config['use_aws_shared_config_files']) || $config['use_aws_shared_config_files'] !== \false) {
-
             $profileName = getenv(self::ENV_PROFILE) ?: 'default';
             $defaultChain['sso'] = self::sso($profileName, self::getHomeDir() . '/.aws/config', $config);
         }
@@ -59,9 +55,7 @@ class TokenProvider
                 }
             }
         }
-
         return self::memoize(call_user_func_array([__CLASS__, 'chain'], array_values($defaultChain)));
-
     }
     /**
      * Create a token provider function from a static token.
@@ -73,7 +67,6 @@ class TokenProvider
     public static function fromToken(TokenInterface $token)
     {
         $promise = Promise\Create::promiseFor($token);
-
         return static function () use ($promise) {
             return $promise;
         };
@@ -91,11 +84,9 @@ class TokenProvider
         //Common use case for when aws_shared_config_files is false
         if (empty($links)) {
             return static function () {
-
                 return Promise\Create::promiseFor(\false);
             };
         }
-
         return static function () use ($links) {
             /** @var callable $parent */
             $parent = array_shift($links);
@@ -156,11 +147,9 @@ class TokenProvider
      *
      * @return callable
      */
-
     public static function cache(callable $provider, CacheInterface $cache, $cacheKey = null)
     {
         $cacheKey = $cacheKey ?: 'aws_cached_token';
-
         return static function () use ($provider, $cache, $cacheKey) {
             $found = $cache->get($cacheKey);
             if (is_array($found) && isset($found['token'])) {
@@ -174,12 +163,10 @@ class TokenProvider
                     }
                 }
             }
-
             return $provider()->then(function (TokenInterface $token) use ($cache, $cacheKey) {
                 $cache->set($cacheKey, ['token' => $token], null === $token->getExpiration() ? 0 : $token->getExpiration() - time());
                 return $token;
             });
-
         };
     }
     /**
@@ -215,11 +202,9 @@ class TokenProvider
      * @return SsoTokenProvider
      * @see Aws\Token\SsoTokenProvider for $config details.
      */
-
     public static function sso($profileName, $filename, $config = [])
     {
         $ssoClient = $config['ssoClient'] ?? null;
-
         return new SsoTokenProvider($profileName, $filename, $ssoClient);
     }
 }

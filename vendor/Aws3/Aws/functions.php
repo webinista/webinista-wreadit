@@ -487,8 +487,5 @@ function is_associative(array $array): bool
     if (empty($array)) {
         return \false;
     }
-    if (function_exists('array_is_list')) {
-        return !array_is_list($array);
-    }
-    return array_keys($array) !== range(0, count($array) - 1);
+    return !array_is_list($array);
 }

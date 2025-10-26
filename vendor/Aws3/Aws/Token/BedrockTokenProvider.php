@@ -5,7 +5,6 @@ namespace Webinista\WreadIt\Aws3\Aws\Token;
 use Webinista\WreadIt\Aws3\Aws\Configuration\ConfigurationResolver;
 use Webinista\WreadIt\Aws3\Aws\Exception\TokenException;
 use Webinista\WreadIt\Aws3\GuzzleHttp\Promise;
-
 /**
  * Token provider for Bedrock that sources bearer tokens from environment variables.
  */
@@ -14,7 +13,6 @@ class BedrockTokenProvider extends TokenProvider
     /** @var string used to resolve the AWS_BEARER_TOKEN_BEDROCK env var */
     public const TOKEN_ENV_KEY = 'bearer_token_bedrock';
     public const BEARER_AUTH = 'smithy.api#httpBearerAuth';
-
     /**
      * Create a default Bedrock token provider that checks for a bearer token
      * in the AWS_BEARER_TOKEN_BEDROCK environment variable.
@@ -29,10 +27,8 @@ class BedrockTokenProvider extends TokenProvider
     public static function defaultProvider(array $config = []): callable
     {
         $defaultChain = ['env' => self::env(self::TOKEN_ENV_KEY)];
-
         return self::memoize(call_user_func_array([TokenProvider::class, 'chain'], array_values($defaultChain)));
     }
-
     /**
      * Token provider that creates a token from an environment variable.
      *
@@ -46,13 +42,11 @@ class BedrockTokenProvider extends TokenProvider
         return static function () use ($configKey) {
             $tokenValue = ConfigurationResolver::env($configKey);
             if (empty($tokenValue)) {
-
                 return Promise\Create::rejectionFor(new TokenException("No token found in environment variable " . ConfigurationResolver::$envPrefix . strtoupper($configKey)));
             }
             return Promise\Create::promiseFor(new Token($tokenValue));
         };
     }
-
     /**
      * Create a token provider from a raw token value string.
      * Bedrock bearer tokens sourced from env do not have an expiration
@@ -61,12 +55,11 @@ class BedrockTokenProvider extends TokenProvider
      *
      * @return callable
      */
-    public static function fromTokenValue(string $tokenValue): callable
+    public static function fromTokenValue(string $tokenValue, ?TokenSource $source = null): callable
     {
-        $token = new Token($tokenValue);
+        $token = new Token($tokenValue, null, $source);
         return self::fromToken($token);
     }
-
     /**
      * Create a Bedrock token provider if the service is 'bedrock' and a token is available.
      * Sets auth scheme preference to `bearer` auth.
@@ -78,15 +71,12 @@ class BedrockTokenProvider extends TokenProvider
     public static function createIfAvailable(array &$args): ?callable
     {
         $tokenValue = ConfigurationResolver::env(self::TOKEN_ENV_KEY);
-
         if ($tokenValue) {
             $authSchemePreference = $args['config']['auth_scheme_preference'] ?? [];
             array_unshift($authSchemePreference, self::BEARER_AUTH);
             $args['config']['auth_scheme_preference'] = $authSchemePreference;
-
-            return self::fromTokenValue($tokenValue);
+            return self::fromTokenValue($tokenValue, TokenSource::BEARER_SERVICE_ENV_VARS);
         }
-
         return null;
     }
 }

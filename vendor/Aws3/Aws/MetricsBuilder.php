@@ -4,6 +4,8 @@ namespace Webinista\WreadIt\Aws3\Aws;
 
 use Webinista\WreadIt\Aws3\Aws\Credentials\CredentialsInterface;
 use Webinista\WreadIt\Aws3\Aws\Credentials\CredentialSources;
+use Webinista\WreadIt\Aws3\Aws\Token;
+use Webinista\WreadIt\Aws3\Aws\Token\TokenInterface;
 /**
  * A placeholder for gathering metrics in a request.
  *
@@ -26,6 +28,7 @@ final class MetricsBuilder
     const ACCOUNT_ID_MODE_PREFERRED = "P";
     const ACCOUNT_ID_MODE_DISABLED = "Q";
     const ACCOUNT_ID_MODE_REQUIRED = "R";
+    const BEARER_SERVICE_ENV_VARS = "3";
     const SIGV4A_SIGNING = "S";
     const RESOLVED_ACCOUNT_ID = "T";
     const FLEXIBLE_CHECKSUMS_REQ_CRC32 = "U";
@@ -116,12 +119,12 @@ final class MetricsBuilder
      *
      * @return void
      */
-    public function identifyMetricByValueAndAppend(string $featureGroup, $value): void
+    public function identifyMetricByValueAndAppend(string $featureGroup, mixed $value): void
     {
         if (empty($value)) {
             return;
         }
-        static $appendMetricFns = ['signature' => 'appendSignatureMetric', 'request_compression' => 'appendRequestCompressionMetric', 'request_checksum' => 'appendRequestChecksumMetric', 'credentials' => 'appendCredentialsMetric', 'account_id_endpoint_mode' => 'appendAccountIdEndpointMode', 'account_id_endpoint' => 'appendAccountIdEndpoint', 'request_checksum_calculation' => 'appendRequestChecksumCalculationMetric'];
+        static $appendMetricFns = ['signature' => 'appendSignatureMetric', 'request_compression' => 'appendRequestCompressionMetric', 'request_checksum' => 'appendRequestChecksumMetric', 'credentials' => 'appendCredentialsMetric', 'account_id_endpoint_mode' => 'appendAccountIdEndpointMode', 'account_id_endpoint' => 'appendAccountIdEndpoint', 'request_checksum_calculation' => 'appendRequestChecksumCalculationMetric', 'token' => 'appendTokenMetric'];
         $fn = $appendMetricFns[$featureGroup];
         $this->{$fn}($value);
     }
@@ -191,6 +194,17 @@ final class MetricsBuilder
         static $credentialsMetricMapping = [CredentialSources::STATIC => self::CREDENTIALS_CODE, CredentialSources::ENVIRONMENT => self::CREDENTIALS_ENV_VARS, CredentialSources::ENVIRONMENT_STS_WEB_ID_TOKEN => self::CREDENTIALS_ENV_VARS_STS_WEB_ID_TOKEN, CredentialSources::STS_ASSUME_ROLE => self::CREDENTIALS_STS_ASSUME_ROLE, CredentialSources::STS_WEB_ID_TOKEN => self::CREDENTIALS_STS_ASSUME_ROLE_WEB_ID, CredentialSources::PROFILE => self::CREDENTIALS_PROFILE, CredentialSources::IMDS => self::CREDENTIALS_IMDS, CredentialSources::ECS => self::CREDENTIALS_HTTP, CredentialSources::PROFILE_STS_WEB_ID_TOKEN => self::CREDENTIALS_PROFILE_STS_WEB_ID_TOKEN, CredentialSources::PROFILE_PROCESS => self::CREDENTIALS_PROFILE_PROCESS, CredentialSources::PROFILE_SSO => self::CREDENTIALS_PROFILE_SSO, CredentialSources::PROFILE_SSO_LEGACY => self::CREDENTIALS_PROFILE_SSO_LEGACY];
         if (isset($credentialsMetricMapping[$source])) {
             $this->append($credentialsMetricMapping[$source]);
+        }
+    }
+    private function appendTokenMetric(TokenInterface $token): void
+    {
+        $source = $token->getSource();
+        if (empty($source)) {
+            return;
+        }
+        static $tokenMetricMapping = ['bearer_service_env_vars' => self::BEARER_SERVICE_ENV_VARS];
+        if (isset($tokenMetricMapping[$source])) {
+            $this->append($tokenMetricMapping[$source]);
         }
     }
     private function appendRequestChecksumCalculationMetric(string $checkSumCalculation): void
