@@ -38,3 +38,5 @@ scoper.inc.php
 .distignore
 .gitignore
 
+./log.txt
+
